@@ -1,7 +1,12 @@
-$background: mediumpurple;
+$background: #8f57fd;
 
 body {
-	background-color: $background;
-	min-height: 100vh;
-	color: yellow;
+	font-family: 'Muli', sans-serif;
+	background: $background;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
