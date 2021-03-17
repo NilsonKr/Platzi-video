@@ -1,0 +1,43 @@
+{
+	"name": "practical-react",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack --mode production",
+		"start": "webpack serve --mode development"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NilsonKr/Practical-React.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/NilsonKr/Practical-React/issues"
+	},
+	"homepage": "https://github.com/NilsonKr/Practical-React#readme",
+	"dependencies": {
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.13.10",
+		"@babel/plugin-transform-runtime": "^7.13.10",
+		"@babel/preset-env": "^7.13.10",
+		"@babel/preset-react": "^7.12.13",
+		"babel-loader": "^8.2.2",
+		"css-loader": "^5.1.3",
+		"html-loader": "^2.1.2",
+		"html-webpack-plugin": "^5.3.1",
+		"mini-css-extract-plugin": "^1.3.9",
+		"sass": "^1.32.8",
+		"sass-loader": "^11.0.1",
+		"style-loader": "^2.0.0",
+		"webpack": "^5.26.2",
+		"webpack-cli": "^4.5.0",
+		"webpack-dev-server": "^3.11.2"
+	}
+}
