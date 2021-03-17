@@ -1,0 +1,39 @@
+.carousel {
+	overflow-x: scroll;
+	padding-left: 30px;
+	width: 100%;
+	position: relative;
+}
+
+.carousel::-webkit-scrollbar {
+	background-color: transparent;
+	height: 8px;
+}
+.carousel::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.377);
+	border-radius: 15px;
+}
+.carousel::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.685);
+	border-radius: 15px;
+}
+
+.carousel__container {
+	transition: 450ms -webkit-transform;
+	transition: 450ms transform;
+	transition: 450ms transform, 450ms -webkit-transform;
+	font-size: 0;
+	white-space: nowrap;
+	margin: 70px 0px;
+	padding-bottom: 10px;
+}
+
+.carousel__container:hover .carousel-item {
+	opacity: 0.3;
+}
+
+.carousel__container:hover .carousel-item:hover {
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+	opacity: 1;
+}
