@@ -1,29 +1,52 @@
-import React, {Component} from 'react';
+import React from 'react';
+import useInitialState from '@hooks/useInitialState';
+
 import Header from '@components/Header';
 import Search from '@components/Search';
 import Categories from '@components/Categories';
 import Carousel from '@components/Carousel';
 import CarouselItem from '@components/Item';
+import Footer from '@components/Footer';
 
-export class Home extends Component {
-	render() {
-		return (
-			<div className='Home'>
-				<Header />
-				<Search />
+const API = 'http://localhost:3000/initialState';
 
-				<Categories>
+const Home = () => {
+	const initialState = useInitialState(API);
+
+	return (
+		<div className='Home'>
+			<Header />
+			<Search />
+
+			{initialState.mylist.length > 0 && (
+				<Categories title='My List'>
 					<Carousel>
-						<CarouselItem />
-						<CarouselItem />
-						<CarouselItem />
-						<CarouselItem />
-						<CarouselItem />
+						{initialState.mylist.map(item => (
+							<CarouselItem key={item.id} data={item} />
+						))}
 					</Carousel>
 				</Categories>
-			</div>
-		);
-	}
-}
+			)}
+
+			<Categories title='Trending'>
+				<Carousel>
+					{initialState.trends.map(item => (
+						<CarouselItem key={item.id} {...item} />
+					))}
+				</Carousel>
+			</Categories>
+
+			<Categories title='Originals'>
+				<Carousel>
+					{initialState.originals.map(item => (
+						<CarouselItem key={item.id} {...item} />
+					))}
+				</Carousel>
+			</Categories>
+
+			<Footer />
+		</div>
+	);
+};
 
 export default Home;
