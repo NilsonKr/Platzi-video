@@ -15,7 +15,6 @@ const Home = () => {
 
 	return (
 		<div className='Home'>
-			<Header />
 			<Search />
 
 			{initialState.mylist.length > 0 && (
@@ -43,8 +42,6 @@ const Home = () => {
 					))}
 				</Carousel>
 			</Categories>
-
-			<Footer />
 		</div>
 	);
 };
