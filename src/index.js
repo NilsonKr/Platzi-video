@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import defaultReducer from './reducers/defaultReducer';
+import defaultReducer from './reducers/favoritesReducer';
 
 import App from './App';
 

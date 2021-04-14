@@ -8,9 +8,6 @@ import Carousel from '@components/Carousel';
 import CarouselItem from '@components/Item';
 
 const Home = props => {
-	console.log(props);
-	// const initialState = useInitialState(API);
-
 	return (
 		<div className='Home'>
 			<Search />
@@ -19,7 +16,7 @@ const Home = props => {
 				<Categories title='My List'>
 					<Carousel>
 						{props.myList.map(item => (
-							<CarouselItem key={item.id} data={item} />
+							<CarouselItem key={item.id} {...item} />
 						))}
 					</Carousel>
 				</Categories>

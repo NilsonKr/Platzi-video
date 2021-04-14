@@ -1,18 +1,39 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as favoritesActions from '../actions/favoritesActions';
 
 import '../styles/components/Item.scss';
 import playIcon from '@assets/play-icon.png';
 import plusIcon from '@assets/plus-icon.png';
 
-const Item = ({title, cover, year, contentRating, duration}) => {
+const Item = props => {
+	const { id, title, cover, year, contentRating, duration } = props;
+	console.log(props);
+
+	const saveAsFavorite = () => {
+		props.setFavorite({
+			id,
+			title,
+			cover,
+			year,
+			contentRating,
+			duration,
+		});
+	};
+
 	return (
 		<div className='carousel-item'>
 			<img className='carousel-item__img' src={cover} alt='' />
 			<div className='carousel-item__details'>
 				<div>
 					<img className='carousel-item__details--img' src={playIcon} alt='Play Icon' />
-					<img className='carousel-item__details--img' src={plusIcon} alt='Plus Icon' />
+					<img
+						className='carousel-item__details--img'
+						src={plusIcon}
+						alt='Plus Icon'
+						onClick={saveAsFavorite}
+					/>
 				</div>
 				<p className='carousel-item__details--title'>{title}</p>
 				<p className='carousel-item__details--subtitle'>{`${year} ${contentRating} ${duration} minutes`}</p>
@@ -29,4 +50,4 @@ Item.propTypes = {
 	duration: PropTypes.number,
 };
 
-export default Item;
+export default connect(null, favoritesActions)(Item);
