@@ -16,7 +16,7 @@ const Home = props => {
 				<Categories title='My List'>
 					<Carousel>
 						{props.myList.map(item => (
-							<CarouselItem key={item.id} {...item} />
+							<CarouselItem key={item.id} {...item} isFavorite />
 						))}
 					</Carousel>
 				</Categories>

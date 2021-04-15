@@ -6,10 +6,10 @@ import * as favoritesActions from '../actions/favoritesActions';
 import '../styles/components/Item.scss';
 import playIcon from '@assets/play-icon.png';
 import plusIcon from '@assets/plus-icon.png';
+import deleteIcon from '@assets/remove-icon.webp';
 
 const Item = props => {
 	const { id, title, cover, year, contentRating, duration } = props;
-	console.log(props);
 
 	const saveAsFavorite = () => {
 		props.setFavorite({
@@ -28,12 +28,22 @@ const Item = props => {
 			<div className='carousel-item__details'>
 				<div>
 					<img className='carousel-item__details--img' src={playIcon} alt='Play Icon' />
-					<img
-						className='carousel-item__details--img'
-						src={plusIcon}
-						alt='Plus Icon'
-						onClick={saveAsFavorite}
-					/>
+					{!props.isFavorite && (
+						<img
+							className='carousel-item__details--img'
+							src={plusIcon}
+							alt='Plus Icon'
+							onClick={saveAsFavorite}
+						/>
+					)}
+					{props.isFavorite && (
+						<img
+							className='carousel-item__details--img'
+							src={deleteIcon}
+							alt='delete'
+							onClick={() => props.deleteFavorite(id)}
+						/>
+					)}
 				</div>
 				<p className='carousel-item__details--title'>{title}</p>
 				<p className='carousel-item__details--subtitle'>{`${year} ${contentRating} ${duration} minutes`}</p>
