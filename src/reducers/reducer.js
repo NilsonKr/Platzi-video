@@ -16,6 +16,8 @@ export default (state, action) => {
 				myList: state.myList.filter(item => item.id !== action.payload),
 			};
 			break;
+		case 'LOGIN':
+			return { ...state, user: action.payload };
 		default:
 			return state;
 	}

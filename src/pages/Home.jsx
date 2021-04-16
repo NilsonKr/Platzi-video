@@ -8,6 +8,8 @@ import Carousel from '@components/Carousel';
 import CarouselItem from '@components/Item';
 
 const Home = props => {
+	console.log(props);
+
 	return (
 		<div className='Home'>
 			<Search />
@@ -41,10 +43,6 @@ const Home = props => {
 	);
 };
 
-const mapStateToProps = state => ({
-	myList: state.myList,
-	trends: state.trends,
-	originals: state.originals,
-});
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(Home);

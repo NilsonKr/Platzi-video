@@ -1,18 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setLogin } from '../actions/favoritesActions';
 
 import googleIcon from '../assets/google-icon.png';
 import twitterIcon from '../assets/twitter-icon.png';
 import '../styles/components/LogIn.scss';
 
-const LogIn = () => {
+const LogIn = props => {
+	const [form, setForm] = useState({
+		user: '',
+		password: '',
+	});
+
+	const handleSetForm = ev => {
+		setForm({
+			...form,
+			[ev.target.name]: ev.target.value,
+		});
+	};
+
+	const handleSubmit = ev => {
+		ev.preventDefault();
+		setForm({ user: '', password: '' });
+		props.setLogin(form.user);
+
+		props.history.push('/');
+	};
+
 	return (
 		<section className='login'>
 			<section className='login__container'>
 				<h2>Inicia sesión</h2>
-				<form className='login__container--form'>
-					<input className='input--login' type='text' placeholder='Correo' />
-					<input className='input--login' type='password' placeholder='Contraseña' />
+				<form className='login__container--form' onSubmit={handleSubmit}>
+					<input
+						name='user'
+						className='input--login'
+						type='text'
+						placeholder='Correo'
+						onChange={handleSetForm}
+						value={form.user}
+						autoComplete='true'
+					/>
+					<input
+						name='password'
+						className='input--login'
+						type='password'
+						placeholder='Contraseña'
+						onChange={handleSetForm}
+						value={form.password}
+						autoComplete='true'
+					/>
 					<button className='button'>Iniciar sesión</button>
 					<div className='login__container--remember-me'>
 						<label>
@@ -38,4 +76,8 @@ const LogIn = () => {
 	);
 };
 
-export default LogIn;
+const mapDispatchToProps = {
+	setLogin,
+};
+
+export default connect(null, mapDispatchToProps)(LogIn);

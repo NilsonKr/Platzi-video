@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import defaultReducer from './reducers/favoritesReducer';
+import reducer from './reducers/reducer';
 
 import App from './App';
 
@@ -174,7 +174,9 @@ const INITIAL_STATE = {
 	],
 };
 
-const store = createStore(defaultReducer, INITIAL_STATE);
+const store = createStore(reducer, INITIAL_STATE);
+
+console.log(store.getState());
 
 ReactDOM.render(
 	<Provider store={store}>
