@@ -16,3 +16,8 @@ export const setLogin = user => ({
 export const logOut = () => ({
 	type: 'LOGOUT',
 });
+
+export const SetPlaying = id => ({
+	type: 'SET_PLAYING',
+	payload: id,
+});

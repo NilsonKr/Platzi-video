@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logOut } from '../actions/actions';
 import gravatar from '../utils/gravatar';
+import classNames from 'classnames';
 
 import logo from '@assets/logo-platzi-video-BW2.png';
 import userIcon from '@assets/user-icon.png';
@@ -10,9 +11,12 @@ import '@styles/components/Header.scss';
 
 const Header = props => {
 	const hasUser = Object.keys(props.user).length > 0;
+	const section = useLocation().pathname.split('/')[1];
+
+	const classHeader = classNames('header', [`header--${section}`]);
 
 	return (
-		<header className='header'>
+		<header className={classHeader}>
 			<Link to='/'>
 				<img className='header__img' src={logo} alt='Platzi Video' />
 			</Link>
