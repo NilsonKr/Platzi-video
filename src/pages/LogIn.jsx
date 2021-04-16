@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setLogin } from '../actions/favoritesActions';
+import gravatar from '../utils/gravatar';
 
 import googleIcon from '../assets/google-icon.png';
 import twitterIcon from '../assets/twitter-icon.png';
@@ -22,8 +23,7 @@ const LogIn = props => {
 
 	const handleSubmit = ev => {
 		ev.preventDefault();
-		setForm({ user: '', password: '' });
-		props.setLogin(form.user);
+		props.setLogin({ email: form.user, password: form.password });
 
 		props.history.push('/');
 	};
