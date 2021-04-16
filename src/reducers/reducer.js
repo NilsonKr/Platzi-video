@@ -18,6 +18,10 @@ export default (state, action) => {
 			break;
 		case 'LOGIN':
 			return { ...state, user: action.payload };
+			break;
+		case 'LOGOUT':
+			return { ...state, user: {} };
+			break;
 		default:
 			return state;
 	}

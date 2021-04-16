@@ -21,12 +21,16 @@
 	justify-content: space-around;
 	min-height: 600px;
 	padding: 60px 68px 40px;
-	width: 300px;
+	width: clamp(320px, 100%, 400px);
 }
 
 .register__container--form {
 	display: flex;
 	flex-direction: column;
+}
+
+.input--register {
+	@extend %input--form;
 }
 
 .register__container a {
@@ -38,4 +42,13 @@
 
 .register__container a:hover {
 	text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+	.register__container {
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+		padding: 0px;
+	}
 }

@@ -1,0 +1,46 @@
+$background: #8f57fd;
+$main-font: 'Muli', sans-serif;
+
+body {
+	font-family: $main-font;
+	background: $background;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.input {
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 2px solid white;
+	border-radius: 25px;
+	color: white;
+	font-family: 'Muli', sans-serif;
+	font-size: 16px;
+	height: 50px;
+	margin-bottom: 20px;
+	outline: none;
+	padding: 0px 20px;
+	width: 70%;
+}
+
+%input--form {
+	background-color: transparent;
+	border-bottom: 2px solid white;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	color: white;
+	font-family: 'Muli', sans-serif;
+	font-size: 16px;
+	height: 50px;
+	margin-bottom: 20px;
+	outline: none;
+	padding: 0px 20px;
+}
+
+::placeholder {
+	color: white;
+}

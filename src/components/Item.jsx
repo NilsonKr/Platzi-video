@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as favoritesActions from '../actions/favoritesActions';
+import * as favoritesActions from '../actions/actions';
 
 import '../styles/components/Item.scss';
 import playIcon from '@assets/play-icon.png';
@@ -11,6 +11,7 @@ import deleteIcon from '@assets/remove-icon.webp';
 const Item = props => {
 	const { id, title, cover, year, contentRating, duration } = props;
 
+	//Save New Favorite
 	const saveAsFavorite = () => {
 		props.setFavorite({
 			id,

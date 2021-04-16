@@ -176,8 +176,6 @@ const INITIAL_STATE = {
 
 const store = createStore(reducer, INITIAL_STATE);
 
-console.log(store.getState());
-
 ReactDOM.render(
 	<Provider store={store}>
 		<App />

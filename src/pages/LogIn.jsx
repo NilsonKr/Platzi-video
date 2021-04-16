@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setLogin } from '../actions/favoritesActions';
-import gravatar from '../utils/gravatar';
+import { setLogin } from '../actions/actions';
 
 import googleIcon from '../assets/google-icon.png';
 import twitterIcon from '../assets/twitter-icon.png';
-import '../styles/components/LogIn.scss';
 
 const LogIn = props => {
 	const [form, setForm] = useState({
@@ -14,6 +12,7 @@ const LogIn = props => {
 		password: '',
 	});
 
+	//Set Query
 	const handleSetForm = ev => {
 		setForm({
 			...form,
