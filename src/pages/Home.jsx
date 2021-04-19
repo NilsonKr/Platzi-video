@@ -12,6 +12,16 @@ const Home = props => {
 		<div className='Home'>
 			<Search />
 
+			{props.searchItems.length > 0 && (
+				<Categories title='Search'>
+					<Carousel>
+						{props.searchItems.map(item => (
+							<CarouselItem key={item.id} {...item} />
+						))}
+					</Carousel>
+				</Categories>
+			)}
+
 			{props.myList.length > 0 && (
 				<Categories title='My List'>
 					<Carousel>

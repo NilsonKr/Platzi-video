@@ -21,3 +21,8 @@ export const SetPlaying = id => ({
 	type: 'SET_PLAYING',
 	payload: id,
 });
+
+export const filteredItems = items => ({
+	type: 'FILTERED_ITEMS',
+	payload: items,
+});

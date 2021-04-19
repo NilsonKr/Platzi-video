@@ -8,20 +8,16 @@ export default (state, action) => {
 			} else {
 				return { ...state, myList: [...state.myList, action.payload] };
 			}
-			break;
 		case 'DELETE__FAVORITE':
 			return {
 				...state,
-				//Let only the items who dont match with deleted id
+				//Let only the items that dont match with deleted id
 				myList: state.myList.filter(item => item.id !== action.payload),
 			};
-			break;
 		case 'LOGIN':
 			return { ...state, user: action.payload };
-			break;
 		case 'LOGOUT':
 			return { ...state, user: {} };
-			break;
 		case 'SET_PLAYING':
 			return {
 				...state,
@@ -30,7 +26,8 @@ export default (state, action) => {
 					state.originals.find(item => item.id === Number(action.payload)) ||
 					[],
 			};
-			break;
+		case 'FILTERED_ITEMS':
+			return { ...state, searchItems: action.payload };
 		default:
 			return state;
 	}

@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 	user: {},
 	playing: false,
 	myList: [],
+	searchItems: [],
 	trends: [
 		{
 			id: 2,

@@ -1,27 +1,17 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect } from 'react';
+import useFilter from '../hooks/useFilter';
 import { connect } from 'react-redux';
+import { filteredItems } from '../actions/actions';
+
 import '@styles/components/Search.scss';
-
-function useFilter(items) {
-	const [query, setQuery] = useState('');
-	const [filteredItems, setFilteredItems] = useState(items);
-
-	useMemo(() => {
-		const newItems = items.filter(item => {
-			return item.title.toLowerCase().includes(query.toLowerCase()); //Filter Items
-		});
-
-		if (newItems.length !== filteredItems.length) {
-			//Set New Items
-			setFilteredItems(newItems);
-		}
-	}, [query]);
-
-	return [query, setQuery, filteredItems];
-}
 
 const Search = props => {
 	const [query, setQuery, filteredItems] = useFilter(props.items);
+
+	//Set Filtered Items
+	useEffect(() => {
+		props.filteredItems(filteredItems);
+	}, [filteredItems]);
 
 	return (
 		<section className='main'>
@@ -30,6 +20,7 @@ const Search = props => {
 				type='text'
 				className='input'
 				placeholder='Search...'
+				value={query}
 				onChange={e => setQuery(e.target.value)}
 			/>
 		</section>
@@ -38,6 +29,11 @@ const Search = props => {
 
 const mapStateToProps = state => ({
 	items: [...state.trends, ...state.originals],
+	searchItems: state.searchItems,
 });
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = {
+	filteredItems,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
