@@ -32,7 +32,8 @@
 		"react-dom": "^17.0.2",
 		"react-redux": "^7.2.4",
 		"react-router-dom": "^5.2.0",
-		"redux": "^4.1.0"
+		"redux": "^4.1.0",
+		"webpack": "^5.37.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.3",
@@ -51,12 +52,14 @@
 		"html-loader": "^2.1.2",
 		"html-webpack-plugin": "^5.3.1",
 		"mini-css-extract-plugin": "^1.6.0",
+		"react-hot-loader": "^4.13.0",
 		"sass": "^1.32.13",
 		"sass-loader": "^11.1.1",
 		"style-loader": "^2.0.0",
 		"terser-webpack-plugin": "^5.1.2",
-		"webpack": "^5.37.1",
 		"webpack-cli": "^4.7.0",
-		"webpack-dev-server": "^3.11.2"
+		"webpack-dev-middleware": "^4.3.0",
+		"webpack-dev-server": "^3.11.2",
+		"webpack-hot-middleware": "^2.25.0"
 	}
 }

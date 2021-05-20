@@ -1,11 +1,15 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: './src/index.js',
+	entry: [
+		'./src/frontend/index.js',
+		'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+	],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'bundle.[contenthash].js',
+		filename: 'assets/bundle.js',
 		publicPath: '/',
 		assetModuleFilename: 'assets/[hash][ext]',
 	},
@@ -13,11 +17,11 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'@assets': path.resolve(__dirname, './src/assets/'),
-			'@components': path.resolve(__dirname, './src/components/'),
-			'@pages': path.resolve(__dirname, './src/pages/'),
-			'@styles': path.resolve(__dirname, './src/styles/'),
-			'@hooks': path.resolve(__dirname, './src/hooks/'),
+			'@assets': path.resolve(__dirname, './src/frontend/assets/'),
+			'@components': path.resolve(__dirname, './src/frontend/components/'),
+			'@pages': path.resolve(__dirname, './src/frontend/pages/'),
+			'@styles': path.resolve(__dirname, './src/frontend/styles/'),
+			'@hooks': path.resolve(__dirname, './src/frontend/hooks/'),
 		},
 	},
 	module: {
@@ -42,15 +46,16 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			template: './public/index.html',
-			filename: 'index.html',
-		}),
+		new webpack.HotModuleReplacementPlugin(),
+		// new HtmlWebpackPlugin({
+		// 	template: './public/index.html',
+		// 	filename: 'index.html',
+		// }),
 	],
-	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
-		compress: true,
-		historyApiFallback: true,
-		open: true,
-	},
+	// devServer: {
+	// 	contentBase: path.join(__dirname, 'dist'),
+	// 	compress: true,
+	// 	historyApiFallback: true,
+	// 	open: true,
+	// },
 };
