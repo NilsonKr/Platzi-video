@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "webpack --config webpack.config.js",
-		"start": "webpack serve --config webpack.config.dev.js"
+		"start": "webpack serve --config webpack.config.dev.js",
+		"server": "nodemon src/server/index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -20,8 +21,11 @@
 	},
 	"homepage": "https://github.com/NilsonKr/Practical-React#readme",
 	"dependencies": {
+		"@babel/register": "^7.13.16",
 		"classnames": "^2.3.1",
 		"clean-webpack-plugin": "^3.0.0",
+		"dotenv": "^9.0.2",
+		"express": "^4.17.1",
 		"md5": "^2.3.0",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.2",
