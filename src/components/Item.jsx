@@ -7,7 +7,7 @@ import * as favoritesActions from '../actions/actions';
 import '../styles/components/Item.scss';
 import playIcon from '@assets/play-icon.png';
 import plusIcon from '@assets/plus-icon.png';
-import deleteIcon from '@assets/remove-icon.webp';
+import deleteIcon from '@assets/remove-icon.svg';
 
 const Item = props => {
 	const { id, title, cover, year, contentRating, duration } = props;
