@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import * as favoritesActions from '../actions/actions';
 
 import '../styles/components/Item.scss';
-import playIcon from '../assets/play-icon.png';
-import plusIcon from '../assets/plus-icon.png';
 // import deleteIcon from '../assets/remove-icon.webp';
 
 const Item = props => {
@@ -32,7 +30,7 @@ const Item = props => {
 					<Link to={`/video/${id}`}>
 						<img
 							className='carousel-item__details--img'
-							src={playIcon}
+							src='../assets/play-icon.png'
 							alt='play video'
 						/>
 					</Link>
@@ -40,7 +38,7 @@ const Item = props => {
 					{!props.isFavorite && (
 						<img
 							className='carousel-item__details--img'
-							src={plusIcon}
+							src='../assets/plus-icon.png'
 							alt='Plus Icon'
 							onClick={saveAsFavorite}
 						/>

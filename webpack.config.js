@@ -3,10 +3,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-	entry: './src/index.js',
+	entry: './src/frontend/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.[contenthash].js',
@@ -15,11 +15,11 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
-			'@assets': path.resolve(__dirname, './src/assets/'),
-			'@components': path.resolve(__dirname, './src/components/'),
-			'@pages': path.resolve(__dirname, './src/pages/'),
-			'@styles': path.resolve(__dirname, './src/styles/'),
-			'@hooks': path.resolve(__dirname, './src/hooks/'),
+			'@assets': path.resolve(__dirname, './src/frontend/assets/'),
+			'@components': path.resolve(__dirname, './src/frontend/components/'),
+			'@pages': path.resolve(__dirname, './src/frontend/pages/'),
+			'@styles': path.resolve(__dirname, './src/frontend/styles/'),
+			'@hooks': path.resolve(__dirname, './src/frontend/hooks/'),
 		},
 	},
 	mode: 'production',

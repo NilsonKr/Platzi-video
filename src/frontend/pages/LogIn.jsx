@@ -3,9 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setLogin } from '../actions/actions';
 
-import googleIcon from '../assets/google-icon.png';
-import twitterIcon from '../assets/twitter-icon.png';
-
 const LogIn = props => {
 	const [form, setForm] = useState({
 		user: '',
@@ -61,10 +58,10 @@ const LogIn = props => {
 				</form>
 				<section className='login__container--social-media'>
 					<div>
-						<img src={twitterIcon} /> Inicia sesión con Google
+						<img src='assets/google-icon.png' /> Inicia sesión con Google
 					</div>
 					<div>
-						<img src={googleIcon} /> Inicia sesión con Twitter
+						<img src='assets/twitter-icon.png' /> Inicia sesión con Twitter
 					</div>
 				</section>
 				<p className='login__container--register'>

@@ -15,7 +15,7 @@ import '@styles/styles.scss';
 const store = createStore(reducer, INITIAL_STATE);
 const history = createBrowserHistory();
 
-ReactDOM.render(
+ReactDOM.hydrate(
 	<Provider store={store}>
 		<Router history={history}>
 			<App />

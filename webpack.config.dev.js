@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: [
@@ -9,7 +8,7 @@ module.exports = {
 		'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
 	],
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'src', 'server', 'public'),
 		filename: 'assets/bundle.js',
 		publicPath: '/',
 		assetModuleFilename: 'assets/[hash][ext]',
@@ -37,10 +36,6 @@ module.exports = {
 				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
 			},
 			{
-				test: /\.(svg|png|jpg|webp)$/i,
-				type: 'asset/resource',
-			},
-			{
 				test: /\.html$/,
 				use: 'html-loader',
 			},
@@ -51,10 +46,6 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: 'assets/app.css',
 		}),
-		// new HtmlWebpackPlugin({
-		// 	template: './public/index.html',
-		// 	filename: 'index.html',
-		// }),
 	],
 	// devServer: {
 	// 	contentBase: path.join(__dirname, 'dist'),
