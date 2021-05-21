@@ -3,7 +3,7 @@ import useFilter from '../hooks/useFilter';
 import { connect } from 'react-redux';
 import { filteredItems } from '../actions/actions';
 
-import '@styles/components/Search.scss';
+import '../styles/components/Search.scss';
 
 const Search = props => {
 	const [query, setQuery, filteredItems] = useFilter(props.items);

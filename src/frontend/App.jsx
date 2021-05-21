@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import LogIn from './pages/LogIn';
-import Register from './pages/Register';
-import NotFound from './pages/NotFound';
-import MediaPlayer from './pages/MediaPlayer';
+import Home from '@pages/Home';
+import LogIn from '@pages/LogIn';
+import Register from '@pages/Register';
+import NotFound from '@pages/NotFound';
+import MediaPlayer from '@pages/MediaPlayer';
 
 const App = () => (
 	<BrowserRouter>
