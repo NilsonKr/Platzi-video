@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import * as favoritesActions from '../actions/actions';
 
 import '../styles/components/Item.scss';
-import playIcon from '../assets/play-icon.png';
-import plusIcon from '../assets/plus-icon.png';
-import deleteIcon from '../assets/remove-icon.svg';
 
 const Item = props => {
 	const { id, title, cover, year, contentRating, duration } = props;
@@ -32,7 +29,7 @@ const Item = props => {
 					<Link to={`/video/${id}`}>
 						<img
 							className='carousel-item__details--img'
-							src={playIcon}
+							src='assets/play-icon.png'
 							alt='play video'
 						/>
 					</Link>
@@ -40,7 +37,7 @@ const Item = props => {
 					{!props.isFavorite && (
 						<img
 							className='carousel-item__details--img'
-							src={plusIcon}
+							src='assets/plus-icon.png'
 							alt='Plus Icon'
 							onClick={saveAsFavorite}
 						/>
@@ -48,7 +45,7 @@ const Item = props => {
 					{props.isFavorite && (
 						<img
 							className='carousel-item__details--img'
-							src={deleteIcon}
+							src='assets/remove-icon.svg'
 							alt='delete'
 							onClick={() => props.deleteFavorite(id)}
 						/>

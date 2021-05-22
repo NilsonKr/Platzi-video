@@ -5,8 +5,6 @@ import { logOut } from '../actions/actions';
 import gravatar from '../utils/gravatar';
 import classNames from 'classnames';
 
-import logo from '../assets/logo-platzi-video-BW2.png';
-import userIcon from '../assets/user-icon.png';
 import '../styles/components/Header.scss';
 
 const Header = props => {
@@ -18,11 +16,18 @@ const Header = props => {
 	return (
 		<header className={classHeader}>
 			<Link to='/'>
-				<img className='header__img' src={logo} alt='Platzi Video' />
+				<img
+					className='header__img'
+					src='assets/logo-platzi-video-BW2.png'
+					alt='Platzi Video'
+				/>
 			</Link>
 			<div className='header__menu'>
 				<div className='header__menu--profile'>
-					<img src={hasUser ? gravatar(props.user.email) : userIcon} alt='User' />
+					<img
+						src={hasUser ? gravatar(props.user.email) : 'assets/user-icon.png'}
+						alt='User'
+					/>
 					<p>Profile</p>
 				</div>
 				<ul>
