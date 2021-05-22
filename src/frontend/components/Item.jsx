@@ -30,7 +30,7 @@ const Item = props => {
 					<Link to={`/video/${id}`}>
 						<img
 							className='carousel-item__details--img'
-							src='../assets/play-icon.png'
+							src='assets/play-icon.png'
 							alt='play video'
 						/>
 					</Link>
@@ -38,7 +38,7 @@ const Item = props => {
 					{!props.isFavorite && (
 						<img
 							className='carousel-item__details--img'
-							src='../assets/plus-icon.png'
+							src='assets/plus-icon.png'
 							alt='Plus Icon'
 							onClick={saveAsFavorite}
 						/>

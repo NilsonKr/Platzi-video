@@ -54,8 +54,8 @@ if (config.ENV === 'development') {
 }
 
 const setHtml = (html, preloadedState, manifest) => {
-	const mainBundle = manifest ? manifest['main.js'] : 'statics/bundle.js';
-	const mainCss = manifest ? manifest['main.css'] : 'statics/app.js';
+	const mainBundle = manifest ? manifest['main.js'] : '"statics/bundle.js"';
+	const mainCss = manifest ? manifest['main.css'] : '"statics/app.css"';
 
 	return `
 		<!DOCTYPE html>
