@@ -28,7 +28,6 @@
 		"dotenv": "^9.0.2",
 		"express": "^4.17.1",
 		"helmet": "^4.6.0",
-		"history": "^5.0.0",
 		"ignore-styles": "^5.0.1",
 		"md5": "^2.3.0",
 		"prop-types": "^15.7.2",
@@ -38,7 +37,8 @@
 		"react-router-config": "^5.1.1",
 		"react-router-dom": "^5.2.0",
 		"redux": "^4.1.0",
-		"webpack": "^5.37.1"
+		"webpack": "^5.37.1",
+		"webpack-manifest-plugin": "^3.1.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.3",
@@ -54,13 +54,10 @@
 		"eslint-plugin-import": "^2.23.2",
 		"eslint-plugin-jsx": "^0.1.0",
 		"eslint-plugin-jsx-a11y": "^6.4.1",
-		"html-loader": "^2.1.2",
-		"html-webpack-plugin": "^5.3.1",
 		"mini-css-extract-plugin": "^1.6.0",
 		"react-hot-loader": "^4.13.0",
 		"sass": "^1.32.13",
 		"sass-loader": "^11.1.1",
-		"style-loader": "^2.0.0",
 		"terser-webpack-plugin": "^5.1.2",
 		"webpack-cli": "^4.7.0",
 		"webpack-dev-middleware": "^4.3.0",

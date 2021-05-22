@@ -1,5 +1,6 @@
 const config = require('./config/index');
 const path = require('path');
+const getManifest = require('./getManifest');
 const webpack = require('webpack');
 const helmet = require('helmet');
 
@@ -33,6 +34,16 @@ if (config.ENV === 'development') {
 	app.use(hotMiddleware(compiler));
 } else {
 	app.use('/statics', express.static(path.resolve(__dirname, '../../dist/statics')));
+	//Get Statics hash routes
+	app.use((req, res, next) => {
+		if (!req.hashManifest) {
+			req.hashManifest = getManifest();
+		}
+
+		next();
+	});
+
+	//Security
 	app.use(
 		helmet({
 			contentSecurityPolicy: false, //Load external data
@@ -42,7 +53,10 @@ if (config.ENV === 'development') {
 	app.disable('x-powered-by');
 }
 
-const setHtml = (html, preloadedState) => {
+const setHtml = (html, preloadedState, manifest) => {
+	const mainBundle = manifest ? manifest['main.js'] : 'statics/bundle.js';
+	const mainCss = manifest ? manifest['main.css'] : 'statics/app.js';
+
 	return `
 		<!DOCTYPE html>
 		<html lang="en">
@@ -50,7 +64,7 @@ const setHtml = (html, preloadedState) => {
 				<meta charset="UTF-8" />
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<link rel="stylesheet" href="statics/app.css" type="text/css">
+				<link rel="stylesheet" href=${mainCss} type="text/css">
 				<link rel="icon" type="image/png" href="./favicon.ico" />
 				<title>React Video</title>
 			</head>
@@ -61,7 +75,7 @@ const setHtml = (html, preloadedState) => {
 						/</g,
 						'\\u003c'
 					)}</script>
-				<script src='statics/bundle.js' type='text/javascript'></script>;
+				<script src=${mainBundle} type='text/javascript'></script>;
 			</body>
 		</html>
 	`;
@@ -79,11 +93,7 @@ const renderApp = (req, res) => {
 
 	//Preloaded state from server
 	const preloadedState = store.getState();
-	// res.set(
-	// 	'Content-Security-Policy',
-	// 	"default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'"
-	// );
-	res.send(setHtml(html, preloadedState));
+	res.send(setHtml(html, preloadedState, req.hashManifest));
 };
 
 //Serve images and static files

@@ -2,13 +2,15 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: './src/frontend/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'statics/bundle.js',
+		filename: 'statics/bundle-[contenthash].js',
+		publicPath: '/',
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
@@ -31,16 +33,13 @@ module.exports = {
 					'sass-loader',
 				],
 			},
-			{
-				test: /\.html$/,
-				use: 'html-loader',
-			},
 		],
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: 'statics/app.css',
+			filename: 'statics/app-[contenthash].css',
 		}),
+		new WebpackManifestPlugin(),
 		new CleanWebpackPlugin(),
 	],
 	optimization: {
