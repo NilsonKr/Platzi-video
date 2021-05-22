@@ -46,6 +46,7 @@ const Item = props => {
 					{props.isFavorite && (
 						<img
 							className='carousel-item__details--img'
+							src='assets/remove-icon.webp'
 							alt='delete'
 							onClick={() => props.deleteFavorite(id)}
 						/>

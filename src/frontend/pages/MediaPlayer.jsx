@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { SetPlaying } from '../actions/actions';
 
@@ -7,7 +7,7 @@ import '../styles/components/Player.scss';
 const MediaPlayer = props => {
 	const { id } = props.match.params;
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		props.SetPlaying(id);
 	}, []);
 
