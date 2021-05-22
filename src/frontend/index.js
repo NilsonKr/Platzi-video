@@ -9,7 +9,7 @@ import { createBrowserHistory } from 'history';
 
 import App from './App';
 
-import '@styles/styles.scss';
+import './styles/styles.scss';
 
 const preloadedState = window.__PRELOADED_STATE__;
 const store = createStore(reducer, preloadedState);

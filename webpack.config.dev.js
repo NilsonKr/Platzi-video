@@ -9,20 +9,12 @@ module.exports = {
 	],
 	output: {
 		path: path.resolve(__dirname, 'src', 'server', 'public'),
-		filename: 'assets/bundle.js',
+		filename: 'statics/bundle.js',
 		publicPath: '/',
-		assetModuleFilename: 'assets/[hash][ext]',
 	},
 	mode: 'development',
 	resolve: {
 		extensions: ['.js', '.jsx'],
-		alias: {
-			'@assets': path.resolve(__dirname, './src/frontend/assets/'),
-			'@components': path.resolve(__dirname, './src/frontend/components/'),
-			'@pages': path.resolve(__dirname, './src/frontend/pages/'),
-			'@styles': path.resolve(__dirname, './src/frontend/styles/'),
-			'@hooks': path.resolve(__dirname, './src/frontend/hooks/'),
-		},
 	},
 	module: {
 		rules: [
@@ -44,7 +36,7 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new MiniCssExtractPlugin({
-			filename: 'assets/app.css',
+			filename: 'statics/app.css',
 		}),
 	],
 	// devServer: {

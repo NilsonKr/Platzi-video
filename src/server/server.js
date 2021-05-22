@@ -1,6 +1,7 @@
 const config = require('./config/index');
 const path = require('path');
 const webpack = require('webpack');
+const helmet = require('helmet');
 
 const express = require('express');
 const app = express();
@@ -30,6 +31,15 @@ if (config.ENV === 'development') {
 
 	app.use(devMiddleware(compiler, { serverSideRender: true }));
 	app.use(hotMiddleware(compiler));
+} else {
+	app.use('/statics', express.static(path.resolve(__dirname, '../../dist/statics')));
+	app.use(
+		helmet({
+			contentSecurityPolicy: false, //Load external data
+		})
+	);
+	//Disable Show framework server
+	app.disable('x-powered-by');
 }
 
 const setHtml = (html, preloadedState) => {
@@ -39,18 +49,19 @@ const setHtml = (html, preloadedState) => {
 			<head>
 				<meta charset="UTF-8" />
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-				<link rel="stylesheet" href="assets/app.css" type="text/css">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<link rel="stylesheet" href="statics/app.css" type="text/css">
 				<link rel="icon" type="image/png" href="./favicon.ico" />
 				<title>React Video</title>
 			</head>
 			<body>
 				<div id="app">${html}</div>
-				<script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-					/</g,
-					'\\u003c'
-				)}</script>
-				<script src='assets/bundle.js' type='text/javascript'></script>;
+				<script>
+					window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+						/</g,
+						'\\u003c'
+					)}</script>
+				<script src='statics/bundle.js' type='text/javascript'></script>;
 			</body>
 		</html>
 	`;
@@ -68,12 +79,15 @@ const renderApp = (req, res) => {
 
 	//Preloaded state from server
 	const preloadedState = store.getState();
-
+	// res.set(
+	// 	'Content-Security-Policy',
+	// 	"default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'"
+	// );
 	res.send(setHtml(html, preloadedState));
 };
 
 //Serve images and static files
-app.use('/assets', express.static(path.join(__dirname, '../../assets')));
+app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
 
 app.get('*', renderApp);
 
