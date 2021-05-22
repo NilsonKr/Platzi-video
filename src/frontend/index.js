@@ -7,13 +7,16 @@ import reducer from './reducers/reducer';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import INITIAL_STATE from './initialState';
 import App from './App';
 
 import '@styles/styles.scss';
 
-const store = createStore(reducer, INITIAL_STATE);
+const preloadedState = window.__PRELOADED_STATE__;
+const store = createStore(reducer, preloadedState);
 const history = createBrowserHistory();
+
+//Delete public state
+delete window.__PRELOADED_STATE__;
 
 ReactDOM.hydrate(
 	<Provider store={store}>

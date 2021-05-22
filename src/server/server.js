@@ -30,10 +30,9 @@ if (config.ENV === 'development') {
 
 	app.use(devMiddleware(compiler, { serverSideRender: true }));
 	app.use(hotMiddleware(compiler));
-	app.use('/assets', express.static(path.join(__dirname, '../../assets')));
 }
 
-const setHtml = html => {
+const setHtml = (html, preloadedState) => {
 	return `
 		<!DOCTYPE html>
 		<html lang="en">
@@ -47,6 +46,10 @@ const setHtml = html => {
 			</head>
 			<body>
 				<div id="app">${html}</div>
+				<script>window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+					/</g,
+					'\\u003c'
+				)}</script>
 				<script src='assets/bundle.js' type='text/javascript'></script>;
 			</body>
 		</html>
@@ -63,10 +66,16 @@ const renderApp = (req, res) => {
 		</Provider>
 	);
 
-	res.send(setHtml(html));
+	//Preloaded state from server
+	const preloadedState = store.getState();
+
+	res.send(setHtml(html, preloadedState));
 };
 
-app.use('/', renderApp);
+//Serve images and static files
+app.use('/assets', express.static(path.join(__dirname, '../../assets')));
+
+app.get('*', renderApp);
 
 app.listen(config.PORT, () => {
 	console.log(`Magic Happen's at http://localhost:${config.PORT}`);
