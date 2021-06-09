@@ -1,2 +1,3 @@
-# Practical-React
-Repo for Practical-React course
+# Platzi Video 
+
+Streaming Platform Made in JavaScript School At Platzi 💚 
