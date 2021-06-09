@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
 	entry: [
 		'./src/frontend/index.js',
-		'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+		'webpack-hot-middleware/client?path=http://localhost:8000/__webpack_hmr',
 	],
 	output: {
 		path: path.resolve(__dirname, 'src', 'server', 'public'),
