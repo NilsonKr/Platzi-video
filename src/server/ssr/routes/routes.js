@@ -1,8 +1,8 @@
-import Home from '../../frontend/pages/Home';
-import LogIn from '../../frontend/pages/LogIn';
-import Register from '../../frontend/pages/Register';
-import NotFound from '../../frontend/pages/NotFound';
-import MediaPlayer from '../../frontend/pages/MediaPlayer';
+import Home from '../../../frontend/pages/Home';
+import LogIn from '../../../frontend/pages/LogIn';
+import Register from '../../../frontend/pages/Register';
+import NotFound from '../../../frontend/pages/NotFound';
+import MediaPlayer from '../../../frontend/pages/MediaPlayer';
 
 const routes = [
 	{

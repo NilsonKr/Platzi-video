@@ -7,6 +7,9 @@ const getManifest = require('./utils/getManifest');
 //Render
 const renderApp = require('./ssr/render');
 
+//Routes
+const authRoutes = require('./auth/routes');
+
 const app = express();
 
 if (config.ENV === 'development') {
@@ -44,6 +47,8 @@ if (config.ENV === 'development') {
 
 //Serve images and static files
 app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
+
+authRoutes(app);
 
 app.get('*', renderApp);
 

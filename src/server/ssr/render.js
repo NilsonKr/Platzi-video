@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import routes from '../routes/routes';
+import routes from './routes/routes';
 import Layout from '../../frontend/components/Layout';
 
 //Redux
