@@ -3,14 +3,15 @@ const express = require('express');
 const config = require('./config/index');
 const path = require('path');
 const getManifest = require('./utils/getManifest');
-
+const cookieParser = require('cookie-parser');
 //Render
 const renderApp = require('./ssr/render');
-
 //Routes
 const authRoutes = require('./auth/routes');
 
 const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
 if (config.ENV === 'development') {
 	console.log('Development Configuration');

@@ -1,6 +1,7 @@
 const passport = require('passport');
 const express = require('express');
 
+const axios = require('axios').default;
 const boom = require('@hapi/boom');
 const config = require('../config/index');
 
@@ -38,6 +39,24 @@ function authRoutes(app) {
 				next(error);
 			}
 		})(req, res, next);
+	});
+
+	router.post('/sign-up', async (req, res, next) => {
+		try {
+			const { data, status } = await axios({
+				method: 'post',
+				url: `${config.apiUrl}/api/auth/sign-up`,
+				data: req.body,
+			});
+
+			if (status !== 201) {
+				next(boom.badRequest());
+			}
+
+			res.status(201).json(data);
+		} catch (error) {
+			next(error);
+		}
 	});
 }
 
