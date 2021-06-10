@@ -17,7 +17,7 @@ export default (state, action) => {
 		case 'LOGIN':
 		case 'LOGOUT':
 		case 'REGISTER':
-			return { ...state, user: { ...action.payload, happens: true } };
+			return { ...state, user: action.payload };
 		case 'SET_PLAYING':
 			return {
 				...state,

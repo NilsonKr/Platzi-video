@@ -48,3 +48,17 @@ export const registerUser = (user, redirectUrl) => dispatch => {
 		})
 		.catch(err => dispatch(setError(err)));
 };
+
+export const loginUser = (user, redirectUrl) => dispatch => {
+	axios({
+		url: '/auth/sign-in',
+		method: 'post',
+		auth: {
+			username: user.email,
+			password: user.password,
+		},
+	})
+		.then(({ data }) => dispatch(setLogin(data)))
+		.then(() => (window.location.href = redirectUrl))
+		.catch(err => dispatch(setError(err)));
+};

@@ -8,6 +8,7 @@ import Carousel from '../components/Carousel';
 import CarouselItem from '../components/Item';
 
 const Home = props => {
+	console.log(props);
 	return (
 		<div className='Home'>
 			<Search />

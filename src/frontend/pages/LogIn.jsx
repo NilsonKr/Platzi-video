@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setLogin } from '../actions/actions';
+import { loginUser } from '../actions/actions';
 
 const LogIn = props => {
 	const [form, setForm] = useState({
-		user: '',
+		email: '',
 		password: '',
 	});
 
@@ -19,7 +19,7 @@ const LogIn = props => {
 
 	const handleSubmit = ev => {
 		ev.preventDefault();
-		props.setLogin({ email: form.user, password: form.password });
+		props.loginUser(form, '/');
 	};
 
 	return (
@@ -28,12 +28,12 @@ const LogIn = props => {
 				<h2>Inicia sesión</h2>
 				<form className='login__container--form' onSubmit={handleSubmit}>
 					<input
-						name='user'
+						name='email'
 						className='input--login'
 						type='text'
 						placeholder='Correo'
 						onChange={handleSetForm}
-						value={form.user}
+						value={form.email}
 						autoComplete='true'
 					/>
 					<input
@@ -71,7 +71,7 @@ const LogIn = props => {
 };
 
 const mapDispatchToProps = {
-	setLogin,
+	loginUser,
 };
 
 const mapStateToProps = ({ user }) => ({ user });

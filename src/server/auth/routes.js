@@ -18,10 +18,7 @@ function authRoutes(app) {
 	app.use('/auth', router);
 
 	//Start OAuth with Google
-	router.get(
-		'/google-oauth',
-		passport.authenticate('google', { scope: ['profile', 'email', 'openid'] })
-	);
+	router.get('/google-oauth', passport.authenticate('google', { scope: ['profile', 'email', 'openid'] }));
 
 	//Callback Google OAuth
 
@@ -64,7 +61,7 @@ function authRoutes(app) {
 						secure: config.ENV === 'development' ? false : true,
 					});
 
-					res.status(200).send(user);
+					res.status(200).json(user);
 				});
 			} catch (error) {
 				next(error);
