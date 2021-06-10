@@ -15,9 +15,9 @@ export default (state, action) => {
 				myList: state.myList.filter(item => item.id !== action.payload),
 			};
 		case 'LOGIN':
-			return { ...state, user: action.payload };
 		case 'LOGOUT':
-			return { ...state, user: {} };
+		case 'REGISTER':
+			return { ...state, user: { ...action.payload, happens: true } };
 		case 'SET_PLAYING':
 			return {
 				...state,

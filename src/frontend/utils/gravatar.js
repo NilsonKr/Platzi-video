@@ -1,4 +1,4 @@
-const url = 'https://es.gravatar.com/avatar/${email}?d=identicon';
+// const url = 'https://es.gravatar.com/avatar/${email}?d=identicon';
 import md5 from 'md5';
 
 const gravatar = email => {

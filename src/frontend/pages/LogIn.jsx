@@ -20,8 +20,6 @@ const LogIn = props => {
 	const handleSubmit = ev => {
 		ev.preventDefault();
 		props.setLogin({ email: form.user, password: form.password });
-
-		props.history.push('/');
 	};
 
 	return (
@@ -76,4 +74,6 @@ const mapDispatchToProps = {
 	setLogin,
 };
 
-export default connect(null, mapDispatchToProps)(LogIn);
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

@@ -74,7 +74,7 @@ function authRoutes(app) {
 
 	router.post('/sign-up', async (req, res, next) => {
 		try {
-			const { data, status } = await axios({
+			const { status } = await axios({
 				method: 'post',
 				url: `${config.apiUrl}/api/auth/sign-up`,
 				data: req.body,
@@ -84,7 +84,10 @@ function authRoutes(app) {
 				next(boom.badRequest());
 			}
 
-			res.status(201).json(data);
+			res.status(201).json({
+				name: req.body.name,
+				email: req.body.email,
+			});
 		} catch (error) {
 			next(error);
 		}
