@@ -1,3 +1,6 @@
+import axios from 'axios';
+import config from '../config/index';
+
 //React App
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -37,12 +40,12 @@ const setHtml = (html, preloadedState, manifest) => {
 	`;
 };
 
-const renderApp = (req, res) => {
+const renderApp = async (req, res) => {
 	if (req.url.includes('video')) {
 		res.redirect('/');
 	}
 
-	const { name, email, id } = req.cookies;
+	const { name, email, id, token } = req.cookies;
 
 	const initialState = {
 		user: {},
@@ -52,6 +55,21 @@ const renderApp = (req, res) => {
 		trends: [],
 		originals: [],
 	};
+
+	try {
+		const { data } = await axios({
+			method: 'get',
+			url: `${config.apiUrl}/api/movies`,
+			headers: { Authorization: `Bearer ${token}` },
+		});
+
+		initialState.trends = data.data.filter(movie => movie.contentRating === 'R');
+		initialState.originals = data.data.filter(movie => movie.contentRating === 'PG');
+	} catch (error) {
+		console.log(error);
+		initialState.trends = [];
+		initialState.originals = [];
+	}
 
 	if (id) {
 		initialState.user = {
