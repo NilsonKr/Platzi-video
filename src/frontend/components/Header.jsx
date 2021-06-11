@@ -8,11 +8,9 @@ import classNames from 'classnames';
 import '../styles/components/Header.scss';
 
 const Header = props => {
-	console.log(props);
 	const hasUser = Object.keys(props.user).length > 0;
-	const section = useLocation().pathname.split('/')[1];
 
-	const classHeader = classNames('header', [`header--${section}`]);
+	const classHeader = classNames('header', [`header--${props.bg}`]);
 
 	return (
 		<>

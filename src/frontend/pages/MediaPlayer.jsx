@@ -12,14 +12,16 @@ const MediaPlayer = props => {
 	}, []);
 
 	return (
-		<div className='Player'>
-			<video controls autoPlay>
-				<source src={props.playing.source} type='video/mp4' />
-			</video>
-			<div className='Player-back'>
-				<button onClick={() => props.history.goBack()}>Go Back</button>
+		<>
+			<div className='Player'>
+				<video controls autoPlay>
+					<source src={props.playing.source} type='video/mp4' />
+				</video>
+				<div className='Player-back'>
+					<button onClick={() => props.history.goBack()}>Go Back</button>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

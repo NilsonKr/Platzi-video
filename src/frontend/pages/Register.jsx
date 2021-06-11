@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { registerUser } from '../actions/actions';
+
+import Header from '../components/Header';
 
 const Register = props => {
 	const [form, setValues] = useState({
@@ -26,39 +27,42 @@ const Register = props => {
 	};
 
 	return (
-		<section className='register'>
-			<section className='register__container'>
-				<h2>Regístrate</h2>
-				<form className='register__container--form' onSubmit={handleSubmit}>
-					<input
-						className='input--register'
-						type='text'
-						placeholder='Name'
-						name='name'
-						value={form.name}
-						onChange={handleSetValues}
-					/>
-					<input
-						className='input--register'
-						type='text'
-						placeholder='E-mail'
-						name='email'
-						value={form.email}
-						onChange={handleSetValues}
-					/>
-					<input
-						className='input--register'
-						type='password'
-						placeholder='Password'
-						name='password'
-						value={form.password}
-						onChange={handleSetValues}
-					/>
-					<button className='button'>Registrarme</button>
-				</form>
-				<Link to='/login'>Iniciar sesión</Link>
+		<>
+			<Header bg='green' />
+			<section className='register'>
+				<section className='register__container'>
+					<h2>Regístrate</h2>
+					<form className='register__container--form' onSubmit={handleSubmit}>
+						<input
+							className='input--register'
+							type='text'
+							placeholder='Name'
+							name='name'
+							value={form.name}
+							onChange={handleSetValues}
+						/>
+						<input
+							className='input--register'
+							type='text'
+							placeholder='E-mail'
+							name='email'
+							value={form.email}
+							onChange={handleSetValues}
+						/>
+						<input
+							className='input--register'
+							type='password'
+							placeholder='Password'
+							name='password'
+							value={form.password}
+							onChange={handleSetValues}
+						/>
+						<button className='button'>Registrarme</button>
+					</form>
+					<Link to='/login'>Iniciar sesión</Link>
+				</section>
 			</section>
-		</section>
+		</>
 	);
 };
 
