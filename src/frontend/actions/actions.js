@@ -22,6 +22,7 @@ export const setLogin = user => ({
 
 export const logOut = () => ({
 	type: 'LOGOUT',
+	payload: {},
 });
 
 export const SetPlaying = id => ({
@@ -58,7 +59,12 @@ export const loginUser = (user, redirectUrl) => dispatch => {
 			password: user.password,
 		},
 	})
-		.then(({ data }) => dispatch(setLogin(data)))
+		.then(({ data }) => {
+			document.cookie = `id=${data.id}`;
+			document.cookie = `name=${data.name}`;
+			document.cookie = `email=${data.email}`;
+			dispatch(setLogin(data));
+		})
 		.then(() => (window.location.href = redirectUrl))
 		.catch(err => dispatch(setError(err)));
 };

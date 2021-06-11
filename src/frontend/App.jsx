@@ -8,14 +8,14 @@ import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import MediaPlayer from './pages/MediaPlayer';
 
-const App = () => (
+const App = ({ isLogged }) => (
 	<BrowserRouter>
 		<Layout>
 			<Switch>
-				<Route exact path='/' component={Home} />
+				<Route exact path='/' component={isLogged ? Home : LogIn} />
 				<Route exact path='/login' component={LogIn} />
 				<Route exact path='/register' component={Register} />
-				<Route exact path='/video/:id' component={MediaPlayer} />
+				<Route exact path='/video/:id' component={isLogged ? MediaPlayer : LogIn} />
 				<Route component={NotFound} />
 			</Switch>
 		</Layout>

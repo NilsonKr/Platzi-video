@@ -30,10 +30,7 @@ const setHtml = (html, preloadedState, manifest) => {
 			<body>
 				<div id="app">${html}</div>
 				<script>
-					window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-						/</g,
-						'\\u003c'
-					)}</script>
+					window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}</script>
 				<script src=${mainBundle} type='text/javascript'></script>;
 			</body>
 		</html>
@@ -45,11 +42,30 @@ const renderApp = (req, res) => {
 		res.redirect('/');
 	}
 
-	const store = createStore(reducer, INITIAL_STATE);
+	const { name, email, id } = req.cookies;
+
+	const initialState = {
+		user: {},
+		playing: null,
+		myList: [],
+		searchItems: [],
+		trends: [],
+		originals: [],
+	};
+
+	if (id) {
+		initialState.user = {
+			id,
+			name,
+			email,
+		};
+	}
+
+	const store = createStore(reducer, initialState);
 	const html = ReactDOMServer.renderToString(
 		<Provider store={store}>
 			<StaticRouter location={req.url} context={{}}>
-				<Layout>{renderRoutes(routes)}</Layout>
+				<Layout>{renderRoutes(routes(Boolean(id)))}</Layout>
 			</StaticRouter>
 		</Provider>
 	);
