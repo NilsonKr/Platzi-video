@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logOut } from '../actions/actions';
+import { handleLogOut } from '../actions/actions';
 import gravatar from '../utils/gravatar';
 import classNames from 'classnames';
 
@@ -30,8 +30,8 @@ const Header = props => {
 							</li>
 						) : null}
 						{hasUser ? (
-							<li onClick={props.logOut}>
-								<Link to='/login'>Log Out</Link>
+							<li onClick={props.handleLogOut}>
+								<a>Log Out</a>
 							</li>
 						) : (
 							<li>
@@ -47,7 +47,7 @@ const Header = props => {
 
 const mapStateToProps = state => ({ user: state.user });
 const mapDispatchToProps = {
-	logOut,
+	handleLogOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

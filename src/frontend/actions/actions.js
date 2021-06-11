@@ -68,3 +68,13 @@ export const loginUser = (user, redirectUrl) => dispatch => {
 		.then(() => (window.location.href = redirectUrl))
 		.catch(err => dispatch(setError(err)));
 };
+
+export const handleLogOut = () => dispatch => {
+	document.cookie = `id=`;
+	document.cookie = `name=`;
+	document.cookie = `email=`;
+
+	dispatch(logOut());
+
+	window.location.href = '/login';
+};
