@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser } from '../actions/actions';
+import { loginUser, googleLogin } from '../actions/actions';
 
 import Header from '../components/Header';
 
@@ -24,6 +24,17 @@ const LogIn = props => {
 		props.loginUser(form, '/');
 	};
 
+	//Login with Google
+	const handleGoogleLogin = () => {
+		const authGoogle = window.open('/auth/google-oauth', '_blank', 'width=500,height=600');
+
+		const checkTimer = setInterval(() => {
+			if (authGoogle.closed) {
+				clearInterval(checkTimer);
+				props.googleLogin();
+			}
+		}, 1000);
+	};
 	return (
 		<>
 			<Header bg='green' />
@@ -59,7 +70,7 @@ const LogIn = props => {
 						</div>
 					</form>
 					<section className='login__container--social-media'>
-						<div>
+						<div onClick={handleGoogleLogin}>
 							<img src='assets/google-icon.png' /> Inicia sesión con Google
 						</div>
 						<div>
@@ -77,6 +88,7 @@ const LogIn = props => {
 
 const mapDispatchToProps = {
 	loginUser,
+	googleLogin,
 };
 
 const mapStateToProps = ({ user }) => ({ user });

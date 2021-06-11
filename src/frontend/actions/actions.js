@@ -78,3 +78,19 @@ export const handleLogOut = () => dispatch => {
 
 	window.location.href = '/login';
 };
+
+export const googleLogin = () => dispatch => {
+	axios({
+		method: 'get',
+		url: '/auth/google-user',
+	})
+		.then(({ data }) => {
+			document.cookie = `id=${data.id}`;
+			document.cookie = `name=${data.name}`;
+			document.cookie = `email=${data.email}`;
+
+			dispatch(setLogin(data));
+			window.location.href = '/';
+		})
+		.catch(err => console.log(err));
+};

@@ -13,7 +13,7 @@ import Layout from '../../frontend/components/Layout';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../../frontend/reducers/reducer';
-import INITIAL_STATE from '../../frontend/initialState';
+// import INITIAL_STATE from '../../frontend/initialState';
 
 const setHtml = (html, preloadedState, manifest) => {
 	const mainBundle = manifest ? manifest['main.js'] : '"statics/bundle.js"';
@@ -56,27 +56,29 @@ const renderApp = async (req, res) => {
 		originals: [],
 	};
 
-	try {
-		const { data } = await axios({
-			method: 'get',
-			url: `${config.apiUrl}/api/movies`,
-			headers: { Authorization: `Bearer ${token}` },
-		});
-
-		initialState.trends = data.data.filter(movie => movie.contentRating === 'R');
-		initialState.originals = data.data.filter(movie => movie.contentRating === 'PG');
-	} catch (error) {
-		console.log(error);
-		initialState.trends = [];
-		initialState.originals = [];
-	}
-
+	//Initial Fetching
 	if (id) {
+		//Set Logged User
 		initialState.user = {
 			id,
 			name,
 			email,
 		};
+
+		try {
+			const { data } = await axios({
+				method: 'get',
+				url: `${config.apiUrl}/api/movies`,
+				headers: { Authorization: `Bearer ${token}` },
+			});
+
+			initialState.trends = data.data.filter(movie => movie.contentRating === 'R');
+			initialState.originals = data.data.filter(movie => movie.contentRating === 'PG');
+		} catch (error) {
+			console.log(error);
+			initialState.trends = [];
+			initialState.originals = [];
+		}
 	}
 
 	const store = createStore(reducer, initialState);

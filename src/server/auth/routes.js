@@ -37,9 +37,21 @@ function authRoutes(app) {
 				secure: config.ENV === 'development' ? false : true,
 			});
 
+			res.cookie('user', user, {
+				httpOnly: config.ENV === 'development' ? false : true,
+				secure: config.ENV === 'development' ? false : true,
+			});
+
 			res.status(200).json(user);
 		}
 	);
+
+	//Get Google User
+	router.get('/google-user', (req, res, next) => {
+		const { user } = req.cookies;
+
+		res.status(200).json(user);
+	});
 
 	router.post('/sign-in', (req, res, next) => {
 		passport.authenticate('basic', (error, data) => {
