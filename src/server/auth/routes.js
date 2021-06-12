@@ -16,7 +16,7 @@ function authRoutes(app) {
 	router.post('/sign-in', (req, res, next) => {
 		passport.authenticate('basic', (error, data) => {
 			if (error || !data) {
-				next(boom.unauthorized());
+				return next(boom.unauthorized());
 			}
 
 			const { token, user } = data;
@@ -24,7 +24,7 @@ function authRoutes(app) {
 			try {
 				req.login(user, { session: false }, err => {
 					if (err) {
-						next(err);
+						return next(err);
 					}
 
 					//Response Cookie with jwt

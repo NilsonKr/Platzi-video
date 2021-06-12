@@ -73,6 +73,8 @@ export const handleLogOut = () => dispatch => {
 	document.cookie = `id=`;
 	document.cookie = `name=`;
 	document.cookie = `email=`;
+	document.cookie = `token=`;
+	document.cookie = `user=`;
 
 	dispatch(logOut());
 
@@ -92,5 +94,5 @@ export const googleLogin = () => dispatch => {
 			dispatch(setLogin(data));
 			window.location.href = '/';
 		})
-		.catch(err => console.log('Error'));
+		.catch(err => console.log(err));
 };

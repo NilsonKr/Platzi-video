@@ -82,7 +82,6 @@ function socialRoutes(app) {
 		if (!user) {
 			return next(boom.unauthorized());
 		}
-
 		res.status(200).json(user);
 	});
 }
