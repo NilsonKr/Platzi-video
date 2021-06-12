@@ -51,29 +51,26 @@ function socialRoutes(app) {
 
 	//Callback Google OAuth
 
-	router.get(
-		'/google-oauth/callback',
-		passport.authenticate('google', { session: false }),
-		(req, res, next) => {
-			if (!req.user) {
-				next(boom.unauthorized());
-			}
-
-			const { token, user } = req.user;
-
-			res.cookie('token', token, {
-				httpOnly: config.ENV === 'development' ? false : true,
-				secure: config.ENV === 'development' ? false : true,
-			});
-
-			res.cookie('user', user, {
-				httpOnly: config.ENV === 'development' ? false : true,
-				secure: config.ENV === 'development' ? false : true,
-			});
-
-			res.status(200).json(user);
+	router.get('/sign-in/callback', passport.authenticate('google', { session: false }), (req, res, next) => {
+		if (!req.user) {
+			next(boom.unauthorized());
 		}
-	);
+
+		const { token, user } = req.user;
+
+		res.cookie('token', token, {
+			httpOnly: config.ENV === 'development' ? false : true,
+			secure: config.ENV === 'development' ? false : true,
+		});
+
+		res.cookie('user', user, {
+			httpOnly: config.ENV === 'development' ? false : true,
+			secure: config.ENV === 'development' ? false : true,
+		});
+
+		// res.status(200).json(user);
+		res.redirect('/social/sign-in/succesful');
+	});
 
 	//Get Social Media User
 	router.get('/social-user', (req, res, next) => {

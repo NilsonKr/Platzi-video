@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -17,7 +18,9 @@ delete window.__PRELOADED_STATE__;
 
 ReactDOM.hydrate(
 	<Provider store={store}>
-		<App isLogged={preloadedState.user.id} />
+		<BrowserRouter>
+			<App isLogged={preloadedState.user.id} />
+		</BrowserRouter>
 	</Provider>,
 	document.querySelector('#app')
 );

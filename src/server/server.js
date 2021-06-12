@@ -34,7 +34,7 @@ if (config.ENV === 'development') {
 	app.use(devMiddleware(compiler, { serverSideRender: true }));
 	app.use(hotMiddleware(compiler));
 } else {
-	app.use('/statics', express.static(path.resolve(__dirname, '../../dist/statics')));
+	app.use('*/statics', express.static(path.resolve(__dirname, '../../dist/statics')));
 	//Get Statics hash routes
 	app.use((req, res, next) => {
 		if (!req.hashManifest) {
@@ -55,7 +55,7 @@ if (config.ENV === 'development') {
 }
 
 //Serve images and static files
-app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
+app.use('*/assets', express.static(path.join(__dirname, '../../assets')));
 
 authRoutes(app);
 socialAuthRoutes(app);

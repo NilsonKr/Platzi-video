@@ -10,7 +10,7 @@ passport.use(
 		{
 			clientID: config.googleClientId,
 			clientSecret: config.googleClientSecret,
-			callbackURL: '/social/google-oauth/callback',
+			callbackURL: '/social/sign-in/callback',
 		},
 		async (acessToken, refreshToken, profile, done) => {
 			try {

@@ -5,9 +5,7 @@ import config from '../config/index';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
-import routes from './routes/routes';
-import Layout from '../../frontend/components/Layout';
+import App from '../../frontend/App';
 
 //Redux
 import { createStore } from 'redux';
@@ -16,8 +14,8 @@ import reducer from '../../frontend/reducers/reducer';
 // import INITIAL_STATE from '../../frontend/initialState';
 
 const setHtml = (html, preloadedState, manifest) => {
-	const mainBundle = manifest ? manifest['main.js'] : '"statics/bundle.js"';
-	const mainCss = manifest ? manifest['main.css'] : '"statics/app.css"';
+	const mainBundle = manifest ? manifest['main.js'] : '"/statics/bundle.js"';
+	const mainCss = manifest ? manifest['main.css'] : '"/statics/app.css"';
 
 	return `
 		<!DOCTYPE html>
@@ -27,14 +25,13 @@ const setHtml = (html, preloadedState, manifest) => {
 				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<link rel="stylesheet" href=${mainCss} type="text/css">
-				<link rel="icon" type="image/png" href="./favicon.ico" />
 				<title>React Video</title>
 			</head>
 			<body>
 				<div id="app">${html}</div>
 				<script>
 					window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}</script>
-				<script src=${mainBundle} type='text/javascript'></script>;
+				<script src=${mainBundle} ></script>;
 			</body>
 		</html>
 	`;
@@ -85,13 +82,14 @@ const renderApp = async (req, res) => {
 	const html = ReactDOMServer.renderToString(
 		<Provider store={store}>
 			<StaticRouter location={req.url} context={{}}>
-				<Layout>{renderRoutes(routes(Boolean(id)))}</Layout>
+				<App isLogged={id} />
 			</StaticRouter>
 		</Provider>
 	);
 
 	//Preloaded state from server
 	const preloadedState = store.getState();
+
 	res.send(setHtml(html, preloadedState, req.hashManifest));
 };
 
