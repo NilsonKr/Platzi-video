@@ -25,8 +25,8 @@ const LogIn = props => {
 	};
 
 	//Login with Google
-	const handleGoogleLogin = () => {
-		const authGoogle = window.open('/social/google-oauth', '_blank', 'width=500,height=600');
+	const handleMediaLogin = socialMedia => {
+		const authGoogle = window.open(`/social/${socialMedia}-oauth`, '_blank', 'width=500,height=600');
 
 		const checkTimer = setInterval(() => {
 			if (authGoogle.closed) {
@@ -70,10 +70,10 @@ const LogIn = props => {
 						</div>
 					</form>
 					<section className='login__container--social-media'>
-						<div onClick={handleGoogleLogin}>
+						<div onClick={() => handleMediaLogin('google')}>
 							<img src='assets/google-icon.png' /> Inicia sesión con Google
 						</div>
-						<div>
+						<div onClick={() => handleMediaLogin('twitter')}>
 							<img src='assets/twitter-icon.png' /> Inicia sesión con Twitter
 						</div>
 					</section>
