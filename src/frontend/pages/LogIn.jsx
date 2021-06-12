@@ -26,7 +26,7 @@ const LogIn = props => {
 
 	//Login with Google
 	const handleGoogleLogin = () => {
-		const authGoogle = window.open('/auth/google-oauth', '_blank', 'width=500,height=600');
+		const authGoogle = window.open('/social/google-oauth', '_blank', 'width=500,height=600');
 
 		const checkTimer = setInterval(() => {
 			if (authGoogle.closed) {

@@ -1,13 +1,16 @@
-const helmet = require('helmet');
 const express = require('express');
 const config = require('./config/index');
 const path = require('path');
 const getManifest = require('./utils/getManifest');
+//Middlewares
+const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+const { wrapBooomError, handleError } = require('./utils/middlewares/handleErrors');
 //Render
 const renderApp = require('./ssr/render');
 //Routes
 const authRoutes = require('./auth/routes');
+const socialAuthRoutes = require('./auth/socialRoutes');
 
 const app = express();
 app.use(express.json());
@@ -42,7 +45,7 @@ if (config.ENV === 'development') {
 			contentSecurityPolicy: false, //Load external data
 		})
 	);
-	//Disable Show framework server
+
 	app.disable('x-powered-by');
 }
 
@@ -50,6 +53,10 @@ if (config.ENV === 'development') {
 app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
 
 authRoutes(app);
+socialAuthRoutes(app);
+//Handle Errors
+app.use(wrapBooomError);
+app.use(handleError);
 
 app.get('*', renderApp);
 

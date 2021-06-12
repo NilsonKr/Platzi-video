@@ -82,7 +82,7 @@ export const handleLogOut = () => dispatch => {
 export const googleLogin = () => dispatch => {
 	axios({
 		method: 'get',
-		url: '/auth/google-user',
+		url: '/social/social-user',
 	})
 		.then(({ data }) => {
 			document.cookie = `id=${data.id}`;
@@ -92,5 +92,5 @@ export const googleLogin = () => dispatch => {
 			dispatch(setLogin(data));
 			window.location.href = '/';
 		})
-		.catch(err => console.log(err));
+		.catch(err => console.log('Error'));
 };
