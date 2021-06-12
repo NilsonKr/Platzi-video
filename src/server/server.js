@@ -3,6 +3,8 @@ const config = require('./config/index');
 const path = require('path');
 const getManifest = require('./utils/getManifest');
 //Middlewares
+const session = require('express-session');
+const passport = require('passport');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { wrapBooomError, handleError } = require('./utils/middlewares/handleErrors');
@@ -15,6 +17,9 @@ const socialAuthRoutes = require('./auth/socialRoutes');
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(session({ secret: config.sessionSecret, saveUninitialized: false, resave: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 if (config.ENV === 'development') {
 	console.log('Development Configuration');

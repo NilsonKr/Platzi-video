@@ -8,6 +8,8 @@ const config = {
 	sessionSecret: process.env.SESSION_SECRET,
 	googleClientId: process.env.GOOGLE_CLIENT_ID,
 	googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+	twitterKey: process.env.TWITTER_KEY,
+	twitterSecret: process.env.TWITTER_SECRET,
 };
 
 module.exports = config;
