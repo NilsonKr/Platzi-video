@@ -1,8 +1,8 @@
 const axios = require('axios').default;
 
-export const setFavorite = card => ({
+export const setFavorite = movie => ({
 	type: 'SET__FAVORITE',
-	payload: card,
+	payload: movie,
 });
 
 export const deleteFavorite = id => ({

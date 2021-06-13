@@ -6,6 +6,7 @@
 	"scripts": {
 		"test": "jest",
 		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage",
 		"start": "nodemon src/server/index.js",
 		"build": "webpack --config webpack.config.js",
 		"prod": "NODE_ENV=production node src/server/index.js"
@@ -78,6 +79,7 @@
 		"webpack-hot-middleware": "^2.25.0"
 	},
 	"jest": {
+		"verbose": true,
 		"setupFilesAfterEnv": [
 			"<rootDir>/src/frontend/__test__/setupTest.js"
 		],
