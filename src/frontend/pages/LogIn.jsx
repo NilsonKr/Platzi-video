@@ -60,7 +60,9 @@ const LogIn = props => {
 							value={form.password}
 							autoComplete='true'
 						/>
-						<button className='button'>Iniciar sesión</button>
+						<button className='button' type='submit'>
+							Iniciar sesión
+						</button>
 						<div className='login__container--remember-me'>
 							<label>
 								<input type='checkbox' id='cbox1' value='first_checkbox' />

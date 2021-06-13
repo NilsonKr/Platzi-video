@@ -33,7 +33,6 @@
 		"express-session": "^1.17.2",
 		"helmet": "^4.6.0",
 		"ignore-styles": "^5.0.1",
-		"jsdom-global": "^3.0.2",
 		"md5": "^2.3.0",
 		"passport": "^0.4.1",
 		"passport-google-oauth": "^2.0.0",
@@ -67,7 +66,6 @@
 		"eslint-plugin-jsx": "^0.1.0",
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"jest": "^27.0.4",
-		"jsdom": "^16.6.0",
 		"mini-css-extract-plugin": "^1.6.0",
 		"react-hot-loader": "^4.13.0",
 		"react-test-renderer": "^17.0.2",
@@ -85,6 +83,7 @@
 		],
 		"moduleNameMapper": {
 			"\\.(sass|scss|css)$": "<rootDir>/src/frontend/__mocks__/stylesMock.js"
-		}
+		},
+		"testEnvironment": "jsdom"
 	}
 }

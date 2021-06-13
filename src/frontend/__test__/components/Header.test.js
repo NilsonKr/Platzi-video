@@ -1,6 +1,5 @@
-import 'jsdom-global/register';
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { create } from 'react-test-renderer';
 import Header from '../../components/Header';
 import ProviderMock from '../../__mocks__/providerMock';
