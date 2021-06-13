@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { create } from 'react-test-renderer';
 import Footer from '../../components/Footer';
 
 describe('<Footer />', () => {
@@ -11,5 +12,11 @@ describe('<Footer />', () => {
 
 	test('Footer have 3 anchors', () => {
 		expect(footerMounted.find('a')).toHaveLength(3);
+	});
+
+	test('Footer SnapShot', () => {
+		const footerSnap = create(<Footer />);
+
+		expect(footerSnap.toJSON()).toMatchSnapshot();
 	});
 });
