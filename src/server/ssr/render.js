@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config/index';
+import getFavorites from '../utils/getFavorites';
 
 //React App
 import React from 'react';
@@ -11,7 +12,6 @@ import App from '../../frontend/App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../../frontend/reducers/reducer';
-// import INITIAL_STATE from '../../frontend/initialState';
 
 const setHtml = (html, preloadedState, manifest) => {
 	const mainBundle = manifest ? manifest['main.js'] : '"/statics/bundle.js"';
@@ -63,20 +63,27 @@ const renderApp = async (req, res) => {
 		};
 
 		try {
+			//All Movies
 			const { data } = await axios({
 				method: 'get',
 				url: `${config.apiUrl}/api/movies`,
 				headers: { Authorization: `Bearer ${token}` },
 			});
+			//Favorite Movies by user
+			const favorites = await getFavorites(token, id);
 
+			initialState.myList = favorites;
 			initialState.trends = data.data.filter(movie => movie.contentRating === 'R');
 			initialState.originals = data.data.filter(movie => movie.contentRating === 'PG');
 		} catch (error) {
 			console.log(error);
+			initialState.myList = [];
 			initialState.trends = [];
 			initialState.originals = [];
 		}
 	}
+
+	// console.log(initialState);
 
 	const store = createStore(reducer, initialState);
 	const html = ReactDOMServer.renderToString(
