@@ -1,10 +1,5 @@
 const axios = require('axios').default;
 
-export const deleteFavorite = id => ({
-	type: 'DELETE__FAVORITE',
-	payload: id,
-});
-
 export const setRegister = payload => ({
 	type: 'REGISTER',
 	payload,
@@ -101,8 +96,6 @@ export const setFavorite = movie => (dispatch, getState) => {
 		userId: user.id,
 	};
 
-	console.log(newFavoriteMovie);
-
 	axios
 		.post(`/api/newFavorite`, newFavoriteMovie)
 		.then(({ data }) => {
@@ -110,4 +103,16 @@ export const setFavorite = movie => (dispatch, getState) => {
 			dispatch({ type: 'SET__FAVORITE', payload: movie });
 		})
 		.catch(err => console.log(err));
+};
+
+export const deleteFavorite = id => dispatch => {
+	axios
+		.delete(`/api/favorite/${id}`)
+		.then(({ data }) => {
+			console.log('Movie Removed ' + data.data);
+			dispatch({ type: 'DELETE__FAVORITE', payload: id });
+		})
+		.catch(err => {
+			console.log(err);
+		});
 };

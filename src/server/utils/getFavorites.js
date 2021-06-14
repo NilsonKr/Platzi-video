@@ -16,12 +16,17 @@ async function getFavorites(token, id) {
 				headers: { Authorization: `Bearer ${token}` },
 			});
 		});
-
+		//Formating movies
 		const favs = await Promise.all(favPromises);
+		const refactFavorites = favs.map(({ data: favResponse }) => favResponse.data);
 
-		const refactFavorites = favs.map(favPromise => favPromise.data.data);
+		//Adding db reference id
+		const favsWithReferenceId = refactFavorites.map((fav, index) => ({
+			...fav,
+			id: references.data[index].id,
+		}));
 
-		return refactFavorites;
+		return favsWithReferenceId;
 	} catch (error) {
 		throw new Error(error);
 	}
