@@ -4,6 +4,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const dotenvPlugin = require('dotenv-webpack');
 
 module.exports = {
 	entry: './src/frontend/index.js',
@@ -36,6 +37,7 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new dotenvPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'statics/app-[contenthash].css',
 		}),

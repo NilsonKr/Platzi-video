@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginUser, googleLogin } from '../actions/actions';
+import { loginUser, socialLogin } from '../actions/actions';
 
 import Header from '../components/Header';
 
@@ -31,7 +31,7 @@ const LogIn = props => {
 		const checkTimer = setInterval(() => {
 			if (authGoogle.closed) {
 				clearInterval(checkTimer);
-				props.googleLogin();
+				props.socialLogin();
 			}
 		}, 1000);
 	};
@@ -90,7 +90,7 @@ const LogIn = props => {
 
 const mapDispatchToProps = {
 	loginUser,
-	googleLogin,
+	socialLogin,
 };
 
 const mapStateToProps = ({ user }) => ({ user });

@@ -13,6 +13,7 @@ const renderApp = require('./ssr/render');
 //Routes
 const authRoutes = require('./auth/routes');
 const socialAuthRoutes = require('./auth/socialRoutes');
+const moviesRoutes = require('./movies/routes');
 
 const app = express();
 app.use(express.json());
@@ -59,6 +60,7 @@ app.use('*/assets', express.static(path.join(__dirname, '../../assets')));
 
 authRoutes(app);
 socialAuthRoutes(app);
+moviesRoutes(app);
 //Handle Errors
 app.use(wrapBooomError);
 app.use(handleError);

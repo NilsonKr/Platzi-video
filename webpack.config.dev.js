@@ -1,14 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenvPlugin = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+require('dotenv').config();
 
 module.exports = {
 	entry: [
 		'./src/frontend/index.js',
 		'webpack-hot-middleware/client?path=http://localhost:8000/__webpack_hmr',
 	],
+
 	output: {
-		path: path.resolve(__dirname, 'src', 'server', 'public'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'statics/bundle.js',
 		publicPath: '/',
 	},
@@ -34,6 +37,7 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new dotenvPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'statics/app.css',

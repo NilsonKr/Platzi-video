@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as favoritesActions from '../actions/actions';
+import { setFavorite, deleteFavorite } from '../actions/actions';
 
 import '../styles/components/Item.scss';
 // import deleteIcon from '../assets/remove-icon.webp';
@@ -28,11 +28,7 @@ const Item = props => {
 			<div className='carousel-item__details'>
 				<div>
 					<Link to={`/video/${id}`}>
-						<img
-							className='carousel-item__details--img'
-							src='assets/play-icon.png'
-							alt='play video'
-						/>
+						<img className='carousel-item__details--img' src='assets/play-icon.png' alt='play video' />
 					</Link>
 
 					{!props.isFavorite && (
@@ -67,4 +63,9 @@ Item.propTypes = {
 	duration: PropTypes.number,
 };
 
-export default connect(null, favoritesActions)(Item);
+const mapDispatchToProps = {
+	setFavorite,
+	deleteFavorite,
+};
+
+export default connect(null, mapDispatchToProps)(Item);

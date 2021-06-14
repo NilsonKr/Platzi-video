@@ -1,10 +1,5 @@
 const axios = require('axios').default;
 
-export const setFavorite = movie => ({
-	type: 'SET__FAVORITE',
-	payload: movie,
-});
-
 export const deleteFavorite = id => ({
 	type: 'DELETE__FAVORITE',
 	payload: id,
@@ -81,7 +76,7 @@ export const handleLogOut = () => dispatch => {
 	window.location.href = '/login';
 };
 
-export const googleLogin = () => dispatch => {
+export const socialLogin = () => dispatch => {
 	axios({
 		method: 'get',
 		url: '/social/social-user',
@@ -93,6 +88,26 @@ export const googleLogin = () => dispatch => {
 
 			dispatch(setLogin(data));
 			window.location.href = '/';
+		})
+		.catch(err => console.log(err));
+};
+
+export const setFavorite = movie => (dispatch, getState) => {
+	// dispatch({ type: 'SET__FAVORITE', payload: movie });
+	const { user } = getState();
+
+	const newFavoriteMovie = {
+		movieId: movie.id,
+		userId: user.id,
+	};
+
+	console.log(newFavoriteMovie);
+
+	axios
+		.post(`/api/newFavorite`, newFavoriteMovie)
+		.then(({ data }) => {
+			console.log(`New Favorite ${data.data}`);
+			dispatch({ type: 'SET__FAVORITE', payload: movie });
 		})
 		.catch(err => console.log(err));
 };
