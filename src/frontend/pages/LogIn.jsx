@@ -6,6 +6,7 @@ import { loginUser, socialLogin } from '../actions/actions';
 import Header from '../components/Header';
 
 const LogIn = props => {
+	const [rememberMe, setRemember] = useState(false);
 	const [form, setForm] = useState({
 		email: '',
 		password: '',
@@ -21,7 +22,7 @@ const LogIn = props => {
 
 	const handleSubmit = ev => {
 		ev.preventDefault();
-		props.loginUser(form, '/');
+		props.loginUser(form, '/', rememberMe);
 	};
 
 	//Login with Google
@@ -65,7 +66,12 @@ const LogIn = props => {
 						</button>
 						<div className='login__container--remember-me'>
 							<label>
-								<input type='checkbox' id='cbox1' value='first_checkbox' />
+								<input
+									type='checkbox'
+									id='cbox1'
+									value='first_checkbox'
+									onClick={() => setRemember(!rememberMe)}
+								/>
 								Recuérdame
 							</label>
 							<a href='/'>Olvidé mi contraseña</a>

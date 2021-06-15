@@ -1,4 +1,6 @@
 const axios = require('axios').default;
+const REMEMBER_TIME = 30 * 24 * 60 * 60 * 1000;
+const DEFAULT_TIME = 4 * 60 * 60 * 1000;
 
 export const setRegister = payload => ({
 	type: 'REGISTER',
@@ -40,9 +42,11 @@ export const registerUser = (user, redirectUrl) => dispatch => {
 		.catch(err => dispatch(setError(err)));
 };
 
-export const loginUser = (user, redirectUrl) => dispatch => {
+export const loginUser = (user, redirectUrl, rememberMe) => dispatch => {
+	const time = rememberMe === true ? REMEMBER_TIME : DEFAULT_TIME;
+
 	axios({
-		url: '/auth/sign-in',
+		url: `/auth/sign-in?remember=${rememberMe}`,
 		method: 'post',
 		auth: {
 			username: user.email,
@@ -50,9 +54,9 @@ export const loginUser = (user, redirectUrl) => dispatch => {
 		},
 	})
 		.then(({ data }) => {
-			document.cookie = `id=${data.id}`;
-			document.cookie = `name=${data.name}`;
-			document.cookie = `email=${data.email}`;
+			document.cookie = `id=${data.id} ;max-age=${time}`;
+			document.cookie = `name=${data.name} ;max-age=${time}`;
+			document.cookie = `email=${data.email} ;max-age=${time}`;
 			dispatch(setLogin(data));
 		})
 		.then(() => (window.location.href = redirectUrl))

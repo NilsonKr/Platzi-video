@@ -37,8 +37,6 @@ function moviesRoutes(app) {
 				headers: { Authorization: `Bearer ${req.cookies.token}` },
 			});
 
-			console.log('Hey');
-
 			if (status !== 200) {
 				return next(boom.badRequest());
 			}

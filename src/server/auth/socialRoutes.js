@@ -42,7 +42,7 @@ function socialRoutes(app) {
 				secure: config.ENV === 'development' ? false : true,
 			});
 
-			res.status(200).json(user);
+			res.redirect('/social/sign-in/succesful');
 		}
 	);
 

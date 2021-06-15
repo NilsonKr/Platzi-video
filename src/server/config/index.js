@@ -3,6 +3,8 @@ require('dotenv').config();
 const config = {
 	ENV: process.env.NODE_ENV || 'development',
 	PORT: process.env.PORT,
+	rememberTime: 30 * 24 * 60 * 60 * 1000,
+	defaultTime: 4 * 60 * 60 * 1000,
 	apiToken: process.env.API_TOKEN,
 	apiUrl: process.env.API_URL,
 	sessionSecret: process.env.SESSION_SECRET,

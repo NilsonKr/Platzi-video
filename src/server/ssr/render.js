@@ -37,7 +37,7 @@ const setHtml = (html, preloadedState, manifest) => {
 	`;
 };
 
-const renderApp = async (req, res) => {
+const renderApp = async (req, res, next) => {
 	if (req.url.includes('video')) {
 		res.redirect('/');
 	}
@@ -76,14 +76,12 @@ const renderApp = async (req, res) => {
 			initialState.trends = data.data.filter(movie => movie.contentRating === 'R');
 			initialState.originals = data.data.filter(movie => movie.contentRating === 'PG');
 		} catch (error) {
-			console.log(error);
+			next(error);
 			initialState.myList = [];
 			initialState.trends = [];
 			initialState.originals = [];
 		}
 	}
-
-	// console.log(initialState);
 
 	const store = createStore(reducer, initialState);
 	const html = ReactDOMServer.renderToString(
