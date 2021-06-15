@@ -32,7 +32,7 @@ const LogIn = props => {
 		const checkTimer = setInterval(() => {
 			if (authGoogle.closed) {
 				clearInterval(checkTimer);
-				props.socialLogin();
+				props.socialLogin(rememberMe);
 			}
 		}, 1000);
 	};

@@ -75,15 +75,17 @@ export const handleLogOut = () => dispatch => {
 	window.location.href = '/login';
 };
 
-export const socialLogin = () => dispatch => {
+export const socialLogin = rememberMe => dispatch => {
+	const time = rememberMe === true ? REMEMBER_TIME : DEFAULT_TIME;
+
 	axios({
 		method: 'get',
-		url: '/social/social-user',
+		url: `/social/social-user?remember=${rememberMe}`,
 	})
 		.then(({ data }) => {
-			document.cookie = `id=${data.id}`;
-			document.cookie = `name=${data.name}`;
-			document.cookie = `email=${data.email}`;
+			document.cookie = `id=${data.id} ;max-age=${time}`;
+			document.cookie = `name=${data.name} ;max-age=${time}`;
+			document.cookie = `email=${data.email} ;max-age=${time}`;
 
 			dispatch(setLogin(data));
 			window.location.href = '/';
