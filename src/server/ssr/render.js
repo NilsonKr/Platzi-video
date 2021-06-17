@@ -52,6 +52,7 @@ const renderApp = async (req, res, next) => {
 		trends: [],
 		originals: [],
 		error: null,
+		loading: false,
 	};
 
 	//Initial Fetching

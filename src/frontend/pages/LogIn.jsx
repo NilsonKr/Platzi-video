@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { loginUser, socialLogin } from '../actions/actions';
 
 import Header from '../components/Header';
+import Loader from '../components/Loader';
 
 const LogIn = props => {
-	console.log(props);
-
 	const [rememberMe, setRemember] = useState(false);
 	const [form, setForm] = useState({
 		email: '',
@@ -92,6 +91,7 @@ const LogIn = props => {
 						You don't have any Account yet ? <Link to='/register'>Sign Up</Link>
 					</p>
 				</section>
+				{props.loading && <Loader />}
 			</section>
 		</>
 	);
@@ -102,6 +102,6 @@ const mapDispatchToProps = {
 	socialLogin,
 };
 
-const mapStateToProps = ({ user, error }) => ({ user, error });
+const mapStateToProps = ({ user, error, loading }) => ({ user, error, loading });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

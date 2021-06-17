@@ -32,6 +32,10 @@ export const setError = error => ({
 	payload: error,
 });
 
+export const setLoad = () => ({
+	type: 'LOADING',
+});
+
 export const registerUser = (user, redirectUrl) => dispatch => {
 	axios
 		.post('/auth/sign-up', user)
@@ -44,6 +48,8 @@ export const registerUser = (user, redirectUrl) => dispatch => {
 
 export const loginUser = (user, redirectUrl, rememberMe) => dispatch => {
 	const time = rememberMe === true ? REMEMBER_TIME : DEFAULT_TIME;
+
+	dispatch(setLoad());
 
 	axios({
 		url: `/auth/sign-in?remember=${rememberMe}`,
@@ -80,6 +86,7 @@ export const handleLogOut = () => dispatch => {
 
 export const socialLogin = rememberMe => dispatch => {
 	const time = rememberMe === true ? REMEMBER_TIME : DEFAULT_TIME;
+	dispatch(setLoad());
 
 	axios({
 		method: 'get',

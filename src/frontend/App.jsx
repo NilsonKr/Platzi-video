@@ -9,6 +9,8 @@ import NotFound from './pages/NotFound';
 import LoginSocialMedia from './pages/LoginSocialMedia';
 import MediaPlayer from './pages/MediaPlayer';
 
+import Loader from './components/Loader';
+
 const App = ({ isLogged }) => (
 	<Layout>
 		<Switch>
@@ -17,6 +19,7 @@ const App = ({ isLogged }) => (
 			<Route exact path='/register' component={Register} />
 			<Route exact path='/video/:id' component={isLogged ? MediaPlayer : LogIn} />
 			<Route path='/social/sign-in/succesful' component={LoginSocialMedia} />
+			<Route path='/loader' component={Loader} />
 			<Route component={NotFound} />
 		</Switch>
 	</Layout>
