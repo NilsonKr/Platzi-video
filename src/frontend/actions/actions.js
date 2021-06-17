@@ -1,6 +1,6 @@
 const axios = require('axios').default;
-const REMEMBER_TIME = 30 * 24 * 60 * 60 * 1000;
-const DEFAULT_TIME = 4 * 60 * 60 * 1000;
+const REMEMBER_TIME = 30 * 24 * 60 * 60; //30days in seconds
+const DEFAULT_TIME = 60 * 60 * 4; //4hrs in seconds
 
 export const setRegister = payload => ({
 	type: 'REGISTER',
@@ -54,9 +54,9 @@ export const loginUser = (user, redirectUrl, rememberMe) => dispatch => {
 		},
 	})
 		.then(({ data }) => {
-			document.cookie = `id=${data.id} ;max-age=${time}`;
-			document.cookie = `name=${data.name} ;max-age=${time}`;
-			document.cookie = `email=${data.email} ;max-age=${time}`;
+			document.cookie = `id=${data.id}; max-age=${time}`;
+			document.cookie = `name=${data.name}; max-age=${time}`;
+			document.cookie = `email=${data.email}; max-age=${time}`;
 			dispatch(setLogin(data));
 		})
 		.then(() => (window.location.href = redirectUrl))
@@ -83,9 +83,9 @@ export const socialLogin = rememberMe => dispatch => {
 		url: `/social/social-user?remember=${rememberMe}`,
 	})
 		.then(({ data }) => {
-			document.cookie = `id=${data.id} ;max-age=${time}`;
-			document.cookie = `name=${data.name} ;max-age=${time}`;
-			document.cookie = `email=${data.email} ;max-age=${time}`;
+			document.cookie = `id=${data.id}; max-age=${time}`;
+			document.cookie = `name=${data.name}; max-age=${time}`;
+			document.cookie = `email=${data.email}; max-age=${time}`;
 
 			dispatch(setLogin(data));
 			window.location.href = '/';

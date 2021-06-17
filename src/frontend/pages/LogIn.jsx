@@ -41,7 +41,7 @@ const LogIn = props => {
 			<Header bg='green' />
 			<section className='login'>
 				<section className='login__container'>
-					<h2>Inicia sesión</h2>
+					<h2>Sign in</h2>
 					<form className='login__container--form' onSubmit={handleSubmit}>
 						<input
 							name='email'
@@ -62,7 +62,7 @@ const LogIn = props => {
 							autoComplete='true'
 						/>
 						<button className='button' type='submit'>
-							Iniciar sesión
+							Sign In
 						</button>
 						<div className='login__container--remember-me'>
 							<label>
@@ -72,21 +72,21 @@ const LogIn = props => {
 									value='first_checkbox'
 									onClick={() => setRemember(!rememberMe)}
 								/>
-								Recuérdame
+								Remember Me
 							</label>
 							<a href='/'>Olvidé mi contraseña</a>
 						</div>
 					</form>
 					<section className='login__container--social-media'>
 						<div onClick={() => handleMediaLogin('google')}>
-							<img src='assets/google-icon.png' /> Inicia sesión con Google
+							<img src='assets/google-icon.png' /> Sign in with Google
 						</div>
 						<div onClick={() => handleMediaLogin('twitter')}>
-							<img src='assets/twitter-icon.png' /> Inicia sesión con Twitter
+							<img src='assets/twitter-icon.png' /> Sign in with Twitter
 						</div>
 					</section>
 					<p className='login__container--register'>
-						No tienes ninguna cuenta <Link to='/register'>Regístrate</Link>
+						You don't have any Account yet ? <Link to='/register'>Sign Up</Link>
 					</p>
 				</section>
 			</section>

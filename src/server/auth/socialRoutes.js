@@ -70,6 +70,7 @@ function socialRoutes(app) {
 			res.cookie('user', user, {
 				httpOnly: config.ENV === 'development' ? false : true,
 				secure: config.ENV === 'development' ? false : true,
+				maxAge: 60 * 2000,
 			});
 
 			// res.status(200).json(user);
