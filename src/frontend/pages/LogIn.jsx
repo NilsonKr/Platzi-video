@@ -6,6 +6,8 @@ import { loginUser, socialLogin } from '../actions/actions';
 import Header from '../components/Header';
 
 const LogIn = props => {
+	console.log(props);
+
 	const [rememberMe, setRemember] = useState(false);
 	const [form, setForm] = useState({
 		email: '',
@@ -64,6 +66,7 @@ const LogIn = props => {
 						<button className='button' type='submit'>
 							Sign In
 						</button>
+						{props.error && <p className='login--error'>{props.error}</p>}
 						<div className='login__container--remember-me'>
 							<label>
 								<input
@@ -99,6 +102,6 @@ const mapDispatchToProps = {
 	socialLogin,
 };
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, error }) => ({ user, error });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

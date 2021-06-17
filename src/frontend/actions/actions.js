@@ -60,7 +60,10 @@ export const loginUser = (user, redirectUrl, rememberMe) => dispatch => {
 			dispatch(setLogin(data));
 		})
 		.then(() => (window.location.href = redirectUrl))
-		.catch(err => dispatch(setError(err)));
+		.catch(err => {
+			console.log(err);
+			dispatch(setError('Oh, Password or Email are Wrong! Try Again'));
+		});
 };
 
 export const handleLogOut = () => dispatch => {
@@ -90,7 +93,10 @@ export const socialLogin = rememberMe => dispatch => {
 			dispatch(setLogin(data));
 			window.location.href = '/';
 		})
-		.catch(err => console.log(err));
+		.catch(err => {
+			dispatch(setError('Oh, Password or Email are Wrong! Try Again'));
+			console.log(err);
+		});
 };
 
 export const setFavorite = movie => (dispatch, getState) => {

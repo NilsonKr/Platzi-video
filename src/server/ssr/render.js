@@ -51,6 +51,7 @@ const renderApp = async (req, res, next) => {
 		searchItems: [],
 		trends: [],
 		originals: [],
+		error: null,
 	};
 
 	//Initial Fetching
