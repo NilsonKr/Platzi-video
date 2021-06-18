@@ -7,9 +7,9 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
-		"start": "nodemon src/server/index.js",
+		"start": "NODE_ENV=production node src/server/index.js",
 		"build": "webpack --config webpack.config.js",
-		"prod": "NODE_ENV=production node src/server/index.js"
+		"dev": "nodemon src/server/index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -23,6 +23,9 @@
 	},
 	"homepage": "https://github.com/NilsonKr/Practical-React#readme",
 	"dependencies": {
+		"react-hot-loader": "^4.13.0",
+		"@babel/plugin-transform-runtime": "^7.14.3",
+		"@babel/preset-react": "^7.13.13",
 		"@babel/core": "^7.14.6",
 		"@babel/preset-env": "^7.14.5",
 		"@babel/register": "^7.13.16",
@@ -52,8 +55,6 @@
 		"webpack-manifest-plugin": "^3.1.1"
 	},
 	"devDependencies": {
-		"@babel/plugin-transform-runtime": "^7.14.3",
-		"@babel/preset-react": "^7.13.13",
 		"@types/jest": "^26.0.23",
 		"@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
 		"babel-eslint": "^10.1.0",
@@ -69,7 +70,6 @@
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"jest": "^27.0.4",
 		"mini-css-extract-plugin": "^1.6.0",
-		"react-hot-loader": "^4.13.0",
 		"react-test-renderer": "^17.0.2",
 		"sass": "^1.32.13",
 		"sass-loader": "^11.1.1",
