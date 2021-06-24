@@ -8,7 +8,7 @@ import '../styles/components/Item.scss';
 // import deleteIcon from '../assets/remove-icon.webp';
 
 const Item = props => {
-	const { id, title, cover, year, contentRating, duration } = props;
+	const { refId, _id: id, title, cover, year, contentRating, duration } = props;
 
 	//Save New Favorite
 	const saveAsFavorite = () => {
@@ -44,7 +44,7 @@ const Item = props => {
 							className='carousel-item__details--img'
 							src='assets/remove-icon.webp'
 							alt='delete'
-							onClick={() => props.deleteFavorite(id)}
+							onClick={() => props.deleteFavorite(refId)}
 						/>
 					)}
 				</div>

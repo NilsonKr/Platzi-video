@@ -23,7 +23,7 @@ async function getFavorites(token, id) {
 		//Adding db reference id
 		const favsWithReferenceId = refactFavorites.map((fav, index) => ({
 			...fav,
-			id: references.data[index].id,
+			refId: references.data[index].id,
 		}));
 
 		return favsWithReferenceId;

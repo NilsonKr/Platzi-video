@@ -14,7 +14,7 @@ export default (state, action) => {
 				error: null,
 				loading: false,
 				//Let only the items that dont match with deleted id
-				myList: state.myList.filter(item => item.id !== action.payload),
+				myList: state.myList.filter(item => item.refId !== action.payload),
 			};
 		case 'LOGIN':
 		case 'LOGOUT':

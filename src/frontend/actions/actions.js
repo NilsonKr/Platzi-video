@@ -119,21 +119,19 @@ export const setFavorite = movie => (dispatch, getState) => {
 		.post(`/api/newFavorite`, newFavoriteMovie)
 		.then(({ data }) => {
 			console.log(`New Favorite ${data.data}`);
-			dispatch({ type: 'SET__FAVORITE', payload: movie });
+			dispatch({ type: 'SET__FAVORITE', payload: { ...movie, refId: data.data } });
 		})
 		.catch(err => console.log(err));
 };
 
 export const deleteFavorite = id => dispatch => {
-	console.log(id);
-
-	// axios
-	// 	.delete(`/api/favorite/${id}`)
-	// 	.then(({ data }) => {
-	// 		console.log('Movie Removed ' + data.data);
-	// 		dispatch({ type: 'DELETE__FAVORITE', payload: id });
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
+	axios
+		.delete(`/api/favorite/${id}`)
+		.then(({ data }) => {
+			console.log('Movie Removed ' + data.data);
+			dispatch({ type: 'DELETE__FAVORITE', payload: id });
+		})
+		.catch(err => {
+			console.log(err);
+		});
 };

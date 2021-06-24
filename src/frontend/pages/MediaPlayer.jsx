@@ -6,7 +6,6 @@ import '../styles/components/Player.scss';
 
 const MediaPlayer = props => {
 	const { id } = props.match.params;
-	console.log(props);
 
 	useEffect(() => {
 		props.SetPlaying(id);
