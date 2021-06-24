@@ -26,9 +26,9 @@ export default (state, action) => {
 				error: null,
 				loading: false,
 				playing:
-					state.trends.find(item => item.id === Number(action.payload)) ||
-					state.originals.find(item => item.id === Number(action.payload)) ||
-					[],
+					state.trends.find(item => item.id === action.payload) ||
+					state.originals.find(item => item.id === action.payload) ||
+					{},
 			};
 		case 'FILTERED_ITEMS':
 			return { ...state, loading: false, searchItems: action.payload };

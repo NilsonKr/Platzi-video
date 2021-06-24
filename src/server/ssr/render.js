@@ -46,7 +46,7 @@ const renderApp = async (req, res, next) => {
 
 	const initialState = {
 		user: {},
-		playing: null,
+		playing: {},
 		myList: [],
 		searchItems: [],
 		trends: [],
